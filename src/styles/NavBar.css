@@ -1,0 +1,16 @@
+.styledSelected {
+    font-weight: bold;
+    text-decoration: none;
+    margin: 1rem;
+    color: black;
+}
+
+.styled {
+    text-decoration: none;
+    margin: 1rem;
+    color: black;
+}
+
+li {
+    list-style-type: none;
+}
