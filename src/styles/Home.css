@@ -9,3 +9,7 @@ li {
 P {
     text-align: center;
 }
+
+.margin-top {
+    margin-top: 1rem;
+}
