@@ -9,17 +9,17 @@ export default function Home() {
 
     return (
         <>
-            <div id='image'>
+            <div className='image'>
                 <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
             </div>
             <NavBar />
             <p className='margin-top-extra'>The best daycare in the region!</p>
             <p className='margin-top'>We provide services that fit all trainers needs:</p>
-            <ul>
-                <li className='margin-top'>Real-world experience gain</li>
-                <li className='margin-top'>Specialised competitive training</li>
-                <li className='margin-top'>1/4000 -- breeding services</li>
-            </ul>
+            <div>
+                <p className='margin-top'>Real-world experience gain</p>
+                <p className='margin-top'>Specialised competitive training</p>
+                <p className='margin-top'>1/4000 -- breeding services</p>
+            </div>
             <div className='text-center margin-top-extra'>
                 <Button href="/about" variant='success'>About</Button>
             </div>
@@ -28,6 +28,9 @@ export default function Home() {
             </div>
             <div className='text-center margin-top-button'>
                 <Button href="/login" variant='success'>Login</Button>
+            </div>
+            <div className='image margin-top-extra'>
+                <img src={require('../images/143926_1.png')} alt='smiling Chansey' height={157} width={182} />
             </div>
             <CFooter className='fixed-bottom centred'>
             <div>

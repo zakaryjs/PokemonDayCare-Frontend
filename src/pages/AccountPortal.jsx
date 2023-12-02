@@ -6,7 +6,7 @@ export default function AccountPortal() {
 
     return (
         <>
-            <div id='image'>
+            <div className='image'>
                 <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
             </div>
             <NavBar />
