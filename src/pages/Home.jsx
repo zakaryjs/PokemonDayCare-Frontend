@@ -12,7 +12,13 @@ export default function Home() {
                 <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
             </div>
             <NavBar />
-            <p className='margin-top'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pretium efficitur volutpat. Mauris sollicitudin vitae ex sed rhoncus. Suspendisse potenti. Etiam eleifend, libero rhoncus finibus pulvinar, ipsum arcu lobortis est, eget laoreet orci lectus cursus odio. Suspendisse malesuada vestibulum est, non commodo mauris convallis non. </p>
+            <p className='margin-top'>The best daycare in the region!</p>
+            <p className='margin-top'>We provide services that fit all trainers needs:</p>
+            <ul>
+                <li className='margin-top'>Real-world experience gain</li>
+                <li className='margin-top'>Specialised competitive training</li>
+                <li className='margin-top'>1/4000 -- breeding services</li>
+            </ul>
             <div className='text-center margin-top'>
                 <Button href="/about" variant='success'>About</Button>
             </div>
