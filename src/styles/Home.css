@@ -11,6 +11,19 @@ P {
     font-size: 1.1rem;
 }
 
+span {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.jumbo-text {
+    text-align: center;
+}
+
+.green-text {
+    color: #5bb16c;
+}
+
 .margin-top {
     margin-top: 1rem;
 }
