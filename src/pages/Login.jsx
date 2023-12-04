@@ -2,6 +2,9 @@ import { useState } from 'react';
 import BackgroundParticles from '../components/BackgroundParticles';
 import NavBar from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import '../styles/Login.css'
 
 
 export default function Login() {
@@ -26,14 +29,15 @@ export default function Login() {
                     <label>Email Address</label>
                 </div>
                 <div>
-                    <input className='centred' type='text' id='email-address-login-input' />
+                    <input type='text' id='email-address-login-input' />
                 </div>
                 <div>
                     <label>Password</label>
+                    {passwordVisibility && <FaRegEye className='margin-left' onClick={togglePassword} /> }
+                    {!passwordVisibility && <FaRegEyeSlash className='margin-left' onClick={togglePassword} /> }
                 </div>
                 <div>
-                    <input className='centred' type={passwordVisibility ? 'text' : 'password'} id='password-login-input' />
-                    <button onClick={togglePassword}>Toggle Password</button>
+                    <input type={passwordVisibility ? 'text' : 'password'} id='password-login-input' />
                 </div>
                 <Button className='margin-top-button' variant='success'>Submit</Button>
             </form>
