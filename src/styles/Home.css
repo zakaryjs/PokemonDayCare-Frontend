@@ -1,0 +1,41 @@
+.image {
+    text-align: center;
+}
+
+li {
+    text-align: center;
+}
+
+P {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+span {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.jumbo-text {
+    text-align: center;
+}
+
+.green-text {
+    color: #5bb16c;
+}
+
+.margin-top {
+    margin-top: 1rem;
+}
+
+.margin-top-extra {
+    margin-top: 2.5rem;
+}
+
+.margin-top-button {
+    margin-top: 1.2rem;
+}
+
+.centred {
+    text-align: center;
+}

@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import '../styles/NavBar.css'
 
 
 export default function NavBar() {
     return (
         <>
-            <li>
-                <Link to="">Home</Link>
-                <Link to="About">About</Link>
-                <Link to="Portal">Portal</Link>
+            <li id="navbar-list">
+                <NavLink to="/" className={({isActive}) => isActive ? 'styledSelected' : 'styled'}>Home</NavLink>
+                <NavLink to="/About" className={({isActive}) => isActive ? 'styledSelected' : 'styled'}>About</NavLink>
+                <NavLink to="/Portal" className={({isActive}) => isActive ? 'styledSelected' : 'styled'}>Portal</NavLink>
             </li>
-        
         </>
     )
 }
