@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import '../styles/Login.css'
+import { login } from '../functions/login';
 
 
 export default function Login() {
@@ -15,7 +16,9 @@ export default function Login() {
         event.preventDefault()
         setPasswordVisibility(!passwordVisibility)
     }
-    
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")    
 
     return (
         <>
@@ -29,7 +32,7 @@ export default function Login() {
                     <label>Email Address</label>
                 </div>
                 <div>
-                    <input type='text' id='email-address-login-input' />
+                    <input type='text' id='email-address-login-input' onChange={(event) => setEmail(event.target.value)} />
                 </div>
                 <div>
                     <label>Password</label>
@@ -37,9 +40,9 @@ export default function Login() {
                     {!passwordVisibility && <FaRegEyeSlash className='margin-left' onClick={togglePassword} /> }
                 </div>
                 <div>
-                    <input type={passwordVisibility ? 'text' : 'password'} id='password-login-input' />
+                    <input type={passwordVisibility ? 'text' : 'password'} id='password-login-input' onChange={(event) => setPassword(event.target.value)} />
                 </div>
-                <Button className='margin-top-button' variant='success'>Submit</Button>
+                <Button onClick={() => {login(email, password)}} className='margin-top-button' variant='success'>Submit</Button>
             </form>
         </>
     )
