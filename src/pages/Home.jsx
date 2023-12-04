@@ -49,7 +49,7 @@ export default function Home() {
             <div className='image margin-top-extra'>
                 <img src={require('../images/143926_1.png')} alt='smiling Chansey' height={157} width={182} />
             </div>
-            <CFooter className='fixed-bottom centred'>
+            <CFooter className='fixed-bottom centred margin-top'>
             <div>
                 <span>&copy; 2023 Zakary Sutherland</span>
             </div>
