@@ -7,10 +7,11 @@ import BackgroundParticles from '../components/BackgroundParticles';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
-import { register } from '../functions/register';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
 
+    const navigate = useNavigate()
     const [passwordVisibility, setPasswordVisibility] = useState(false)
 
     const togglePassword = (event) => {
@@ -22,6 +23,30 @@ export default function Register() {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    async function register(firstName, lastName, email, password) {
+
+        let result = await fetch(
+            process.env.REACT_APP_BACKEND_REGISTER,
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify({firstName: firstName, lastName: lastName, password: password, email: email}),
+            }
+        )
+    
+        let data = await result.json()
+        console.log(data)
+    
+        if (data.user) {
+            navigate('/login')
+        }
+    
+        return data
+    }
 
 
     return (
