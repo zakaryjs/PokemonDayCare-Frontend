@@ -23,6 +23,7 @@ export default function Register() {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState(null)
 
     async function register(firstName, lastName, email, password) {
 
@@ -44,6 +45,10 @@ export default function Register() {
         if (data.user) {
             console.log('Registration successful, redirecting to login page...')
             navigate('/login')
+        }
+
+        if (data.error) {
+            setError(data.error)
         }
     
         return data
@@ -86,6 +91,10 @@ export default function Register() {
                 </div>
                 <Button onClick={() => {register(firstName, lastName, email, password)}} className='margin-top-button' variant='success'>Submit</Button>
             </form>
+            {error?.errors?.firstName && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.firstName?.message}`}</p>}
+            {error?.errors?.lastName && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.lastName?.message}`}</p>}
+            {error?.errors?.email && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.email?.message}`}</p>}
+            {error?.errorMessage && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errorMessage}`}</p>}
             <CFooter className='fixed-bottom centred margin-top'>
             <div>
                 <span>&copy; 2023 Zakary Sutherland</span>
