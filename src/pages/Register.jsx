@@ -42,6 +42,7 @@ export default function Register() {
         console.log(data)
     
         if (data.user) {
+            console.log('Registration successful, redirecting to login page...')
             navigate('/login')
         }
     
