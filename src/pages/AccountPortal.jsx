@@ -104,7 +104,9 @@ export default function AccountPortal() {
             {accountStatus.admin && <p>Admin: TRUE</p>}
             {user && <p>Account ID: {user.userID}</p>}
             {info && <p>Hello, {info.firstName}!</p>}
-            <Button onClick={() => {logout()}} className='margin-top-button centred' variant='success'>Logout</Button>
+            <div className='text-center margin-top-button'>
+                {user && <Button onClick={() => {logout()}} className='margin-top-button centred' variant='success'>Logout</Button>}
+            </div>
         </>
     )
 }
