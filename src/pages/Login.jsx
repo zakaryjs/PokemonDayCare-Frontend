@@ -56,7 +56,8 @@ export default function Login() {
                 <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
             </div>
             <NavBar />
-            <form className='centred margin-top-extra'>
+            <h1 className='margin-top'>Login</h1>
+            <form className='centred margin-top'>
                 <div>
                     <label>Email Address</label>
                 </div>
@@ -71,7 +72,9 @@ export default function Login() {
                 <div>
                     <input type={passwordVisibility ? 'text' : 'password'} id='password-login-input' onChange={(event) => setPassword(event.target.value)} />
                 </div>
-                <Button onClick={() => {login(email, password)}} className='margin-top-button' variant='success'>Submit</Button>
+                <div className='text-center margin-top-button'>
+                    <Button onClick={() => {login(email, password)}} className='margin-top-button' variant='success'>Submit</Button>
+                </div>
             </form>
             {error && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error}`}</p>}
         </>
