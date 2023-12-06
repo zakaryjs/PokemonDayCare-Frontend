@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import BackgroundParticles from '../components/BackgroundParticles';
 import NavBar from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
