@@ -40,7 +40,7 @@ export default function Register() {
         )
     
         let data = await result.json()
-        console.log(data)
+        // console.log(data)
     
         if (data.user) {
             console.log('Registration successful, redirecting to login page...')
@@ -62,7 +62,8 @@ export default function Register() {
                 <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
             </div>
             <NavBar />
-            <form className='centred margin-top-extra'>
+            <h1 className='margin-top'>Register</h1>
+            <form className='centred margin-top'>
                 <div>
                     <label>First Name</label>
                 </div>
