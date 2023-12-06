@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BackgroundParticles from '../components/BackgroundParticles';
 import NavBar from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import '../styles/Login.css'
-import { login } from '../functions/login';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Login() {
 
+    const navigate = useNavigate()
     const [passwordVisibility, setPasswordVisibility] = useState(false)
 
     const togglePassword = (event) => {
@@ -18,7 +19,35 @@ export default function Login() {
     }
 
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")    
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState(null)
+
+    async function login(email, password) {
+
+        let result = await fetch(
+            process.env.REACT_APP_BACKEND_LOGIN,
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify({email: email, password: password}),
+            }
+        )
+    
+        let data = await result.json()
+
+        if (!data.message) {
+            navigate('/portal')
+        }
+
+        if (data.message) {
+            setError(data.message)
+        }
+    
+        return data
+    }
 
     return (
         <>
@@ -44,6 +73,7 @@ export default function Login() {
                 </div>
                 <Button onClick={() => {login(email, password)}} className='margin-top-button' variant='success'>Submit</Button>
             </form>
+            {error && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error}`}</p>}
         </>
     )
 }
