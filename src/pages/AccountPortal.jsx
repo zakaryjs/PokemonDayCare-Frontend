@@ -11,6 +11,17 @@ export default function AccountPortal() {
     const [info, setInfo] = useState(null)
     const navigate = useNavigate()
 
+    let myDate = new Date()
+    let hours = myDate.getHours()
+    let welcome
+
+    if (hours < 12)
+        welcome = "morning"
+    else if (hours >= 12 && hours <= 17)
+        welcome = "afternoon"
+    else if (hours >= 17 && hours <= 24)
+        welcome = "evening"
+
 
     useEffect(() => {
         refresh()
@@ -92,9 +103,9 @@ export default function AccountPortal() {
         navigate('/')
         return data
     }
-    
 
-    return (
+    if (info?.firstName) {
+        return (
         <>
             <BackgroundParticles />
             <div className='image'>
@@ -102,11 +113,35 @@ export default function AccountPortal() {
             </div>
             <NavBar />
             {accountStatus.admin && <p>Admin: TRUE</p>}
-            {user && <p>Account ID: {user.userID}</p>}
-            {info && <p>Hello, {info.firstName}!</p>}
+            <p className='margin-top-extra'>Account ID: {user.userID}</p>
+            {info && <p>Good {welcome}, {info.firstName}!</p>}
             <div className='text-center margin-top-button'>
-                {user && <Button onClick={() => {logout()}} className='margin-top-button centred' variant='success'>Logout</Button>}
+                <Button href="/pokemon" variant='success' disabled>View Pokemon</Button>
+            </div>
+            <div className='text-center margin-top-button'>
+                <Button href="/createpokemon" variant='success' disabled>Create Pokemon</Button>
+            </div>
+            <div className='text-center margin-top-button'>
+                <Button href="/appointments" variant='success' disabled>View Appointments</Button>
+            </div>
+            <div className='text-center margin-top-button'>
+                <Button href="/createappointment" variant='success' disabled>Create Appointment</Button>
+            </div>
+            <div className='text-center margin-top-button'>
+                <Button onClick={() => {logout()}} className='margin-top-button centred' variant='success'>Logout</Button>
             </div>
         </>
     )
+
+} else {
+    return (
+        <>
+            <BackgroundParticles />
+                <div className='image'>
+                    <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
+                </div>
+                <NavBar />
+        </>
+    )
+}
 }
