@@ -4,8 +4,17 @@ import '../styles/Home.css'
 import Button from 'react-bootstrap/Button';
 import { CFooter } from '@coreui/react';
 import BackgroundParticles from '../components/BackgroundParticles';
+import { useRefresh } from '../hooks/UseRefresh';
+import { useEffect } from 'react';
 
 export default function Home() {
+
+    const { refresh, loggedIn } = useRefresh();
+
+    useEffect(() => {
+        refresh()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
     return (
@@ -41,10 +50,10 @@ export default function Home() {
                 <Button href="/about" variant='success'>About</Button>
             </div>
             <div className='text-center margin-top-button'>
-                <Button href="/register" variant='success'>Register</Button>
+                {!loggedIn && <Button href="/register" variant='success'>Register</Button>}
             </div>
             <div className='text-center margin-top-button'>
-                <Button href="/login" variant='success'>Login</Button>
+                {!loggedIn && <Button href="/login" variant='success'>Login</Button>}
             </div>
             <div className='image margin-top-extra'>
                 <img src={require('../images/143926_1.png')} alt='smiling Chansey' height={157} width={182} />

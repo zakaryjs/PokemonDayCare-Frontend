@@ -6,12 +6,13 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import '../styles/Login.css'
 import { useNavigate } from 'react-router-dom';
-
+import LoadingGrid from '../components/spinners/Grid';
 
 export default function Login() {
 
     const navigate = useNavigate()
     const [passwordVisibility, setPasswordVisibility] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const togglePassword = (event) => {
         event.preventDefault()
@@ -23,6 +24,7 @@ export default function Login() {
     const [error, setError] = useState(null)
 
     async function login(email, password) {
+        setLoading(true)
 
         let result = await fetch(
             process.env.REACT_APP_BACKEND_LOGIN,
@@ -39,10 +41,12 @@ export default function Login() {
         let data = await result.json()
 
         if (!data.message) {
+            setLoading(false)
             navigate('/portal')
         }
 
         if (data.message) {
+            setLoading(false)
             setError(data.message)
         }
     
@@ -73,9 +77,12 @@ export default function Login() {
                     <input type={passwordVisibility ? 'text' : 'password'} id='password-login-input' onChange={(event) => setPassword(event.target.value)} />
                 </div>
                 <div className='text-center margin-top-button'>
-                    <Button onClick={() => {login(email, password)}} className='margin-top-button' variant='success'>Submit</Button>
+                    {!loading && <Button onClick={() => {login(email, password)}} className='margin-top-button' variant='success'>Submit</Button>}
                 </div>
             </form>
+            <div className='container margin-top-extra'>
+            {loading && <LoadingGrid />}
+            </div>
             {error && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error}`}</p>}
         </>
     )
