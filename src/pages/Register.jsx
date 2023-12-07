@@ -8,11 +8,13 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoadingGrid from '../components/spinners/Grid';
 
 export default function Register() {
 
     const navigate = useNavigate()
     const [passwordVisibility, setPasswordVisibility] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const togglePassword = (event) => {
         event.preventDefault()
@@ -26,6 +28,7 @@ export default function Register() {
     const [error, setError] = useState(null)
 
     async function register(firstName, lastName, email, password) {
+        setLoading(true)
 
         let result = await fetch(
             process.env.REACT_APP_BACKEND_REGISTER,
@@ -43,11 +46,13 @@ export default function Register() {
         // console.log(data)
     
         if (data.user) {
+            setLoading(false)
             console.log('Registration successful, redirecting to login page...')
             navigate('/login')
         }
 
         if (data.error) {
+            setLoading(false)
             setError(data.error)
         }
     
@@ -90,8 +95,11 @@ export default function Register() {
                 <div>
                     <input type={passwordVisibility ? 'text' : 'password'} id='password-register-input' onChange={(event) => setPassword(event.target.value)} />
                 </div>
-                <Button onClick={() => {register(firstName, lastName, email, password)}} className='margin-top-button' variant='success'>Submit</Button>
+                {!loading && <Button onClick={() => {register(firstName, lastName, email, password)}} className='margin-top-button' variant='success'>Submit</Button>}
             </form>
+            <div className='container margin-top-extra'>
+            {loading && <LoadingGrid />}
+            </div>
             {error?.errors?.firstName && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.firstName?.message}`}</p>}
             {error?.errors?.lastName && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.lastName?.message}`}</p>}
             {error?.errors?.email && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.email?.message}`}</p>}
