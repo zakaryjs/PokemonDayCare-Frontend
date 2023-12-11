@@ -8,12 +8,11 @@ import LoadingCircles from '../components/spinners/Circles';
 import LoadingGrid from '../components/spinners/Grid';
 import '../styles/AccountPortal.css'
 import {useRefresh} from '../hooks/UseRefresh';
+import Footer from '../components/Footer';
+import HeaderImage from '../components/HeaderImage';
 
 export default function AccountPortal() {
 
-    // const [accountStatus, setAccountStatus] = useState("")
-    // const [user, setUser] = useState(null)
-    // const [info, setInfo] = useState(null)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const { refresh, accountStatus, user, info, loggedIn } = useRefresh();
@@ -33,59 +32,6 @@ export default function AccountPortal() {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loggedIn])
-
-    // useEffect(() => {
-    //     getUserInfo()
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [user])
-
-    // async function refresh() {
-    //     try {
-    //         let result = await fetch(
-    //             process.env.REACT_APP_BACKEND_REFRESH,
-    //             {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //                 credentials: "include",
-    //                 body: JSON.stringify({}),
-    //             }
-    //         )
-        
-    //         let data = await result.json()
-    //         // console.log('validation', data)
-    
-    //         if (data.error) {
-    //             console.log(data.error)
-    //         } if (data.isAdmin) {
-    //             console.log('verified as admin')
-    //             setAccountStatus({admin: true})
-    //             setUser(data.user)
-    //             return
-    //         } if (data.user) {
-    //             console.log('verified as regular user')
-    //             setAccountStatus({admin: false})
-    //             setUser(data.user)
-    //             return
-    //         } else {
-    //             navigate('/login')
-    //         }
-    //         return data
-    //     } catch (error) {}
-    // }
-
-    // async function getUserInfo() {
-    //     if (user && user.userID) {
-    //         let userID = user?.userID     
-    //         let result = await fetch(`${process.env.REACT_APP_BACKEND_BASE}${userID}`)
-
-    //         let data = await result.json()
-    //         setInfo(data)
-    //         // console.log('user info', data)
-    //         return data
-    //     }
-    // }
 
     async function logout() {
         setLoading(true)
@@ -110,9 +56,7 @@ export default function AccountPortal() {
         return (
         <>
             <BackgroundParticles />
-            <div className='image'>
-                <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
-            </div>
+            <HeaderImage />
             <NavBar />
             {info?.firstName && (
                 <>
@@ -144,6 +88,7 @@ export default function AccountPortal() {
                     <LoadingCircles />
                 </div>
             )}
+            <Footer />
         </>
     )
 
