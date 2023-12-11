@@ -7,6 +7,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import '../styles/Login.css'
 import { useNavigate } from 'react-router-dom';
 import LoadingGrid from '../components/spinners/Grid';
+import Footer from '../components/Footer';
+import HeaderImage from '../components/HeaderImage';
 
 export default function Login() {
 
@@ -56,9 +58,7 @@ export default function Login() {
     return (
         <>
             <BackgroundParticles />
-            <div className='image'>
-                <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
-            </div>
+            <HeaderImage />
             <NavBar />
             <h1 className='margin-top'>Login</h1>
             <form className='centred margin-top'>
@@ -84,6 +84,7 @@ export default function Login() {
             {loading && <LoadingGrid />}
             </div>
             {error && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error}`}</p>}
+            <Footer />
         </>
     )
 }

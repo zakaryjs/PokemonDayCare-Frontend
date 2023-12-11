@@ -1,7 +1,8 @@
 import BackgroundParticles from '../components/BackgroundParticles';
+import Footer from '../components/Footer';
+import HeaderImage from '../components/HeaderImage';
 import NavBar from '../components/NavBar';
 import '../styles/About.css'
-import { CFooter } from '@coreui/react';
 
 
 export default function About() {
@@ -10,9 +11,7 @@ export default function About() {
     return (
         <>
         <BackgroundParticles />
-            <div className='image'>
-                <img src={require('../images/Zak-Logo-BG-removed.png')} alt='logo' height={180} width={320} />
-            </div>
+            <HeaderImage />
             <NavBar />
             <div className='image margin-top-extra'>
                 <img src={require('../images/Day_Care_Unova.png')} alt='daycare' height={180} width={320} />
@@ -35,11 +34,7 @@ export default function About() {
                 made the right choice!
                 </p>
             </div>
-            <CFooter className='fixed-bottom centred margin-top'>
-            <div>
-                <span>&copy; 2023 Zakary Sutherland</span>
-            </div>
-            </CFooter>
+            <Footer />
         </>
     )
 }
