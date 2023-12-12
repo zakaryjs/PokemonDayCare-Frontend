@@ -25,6 +25,7 @@ export function useRefresh() {
 
       if (data.error) {
         // console.log(data.error)
+        setLoggedIn(false)
       } if (data.user.isAdmin) {
         // console.log('verified as admin')
         setAccountStatus({ admin: true })
