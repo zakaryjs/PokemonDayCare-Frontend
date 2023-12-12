@@ -19,7 +19,7 @@ export default function CreatePokemon() {
     const [weight, setWeight] = useState("")
     const [notes, setNotes] = useState("")
 
-    const { refresh, user, accountStatus } = useRefresh();
+    const { refresh, user } = useRefresh();
     const [id, setId] = useState(null)
     const [loading, setLoading] = useState(false)
 
