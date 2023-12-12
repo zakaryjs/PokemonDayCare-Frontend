@@ -1,0 +1,10 @@
+.pokemon-box {
+    background-image: url(https://img.wattpad.com/1187b872c808212a11bf71d244713a02c8b63e1b/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f6279302d685f3634766e414b77513d3d2d313131333034303430352e313661336637363437383937663262613837393939333038353038382e676966);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+    border: 3px white solid;
+}

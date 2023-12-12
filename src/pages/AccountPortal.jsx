@@ -64,7 +64,7 @@ export default function AccountPortal() {
                     <p className='margin-top-extra'>Account ID: {user.userID}</p>
                     {info && <p>Good {welcome}, {info.firstName}!</p>}
                     <div className='text-center margin-top-button'>
-                        <Button href="/pokemon" variant='success' disabled>View Pokemon</Button>
+                        <Button href="/pokemon" variant='success'>View Pokemon</Button>
                     </div>
                     <div className='text-center margin-top-button'>
                         <Button href="/createpokemon" variant='success' disabled>Create Pokemon</Button>

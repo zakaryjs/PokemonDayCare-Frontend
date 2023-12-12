@@ -10,10 +10,11 @@ import AccountPortal from './pages/AccountPortal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ViewPokemon from './pages/Pokemon';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
@@ -21,10 +22,11 @@ root.render(
         <Route path='/portal' element={<AccountPortal />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/pokemon' element={<ViewPokemon />} />
       </Routes>
     </BrowserRouter>
     <App />
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
