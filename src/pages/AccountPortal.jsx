@@ -47,7 +47,7 @@ export default function AccountPortal() {
         )
     
         let data = await result.json()
-        console.log(data)
+        // console.log(data)
         setLoading(false)
         navigate('/')
         return data
