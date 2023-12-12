@@ -34,7 +34,6 @@ export default function ViewPokemon() {
             GetPokemon()
         }
         if (id != null && user.isAdmin === false) {
-            console.log(`getting single users pokemon`)
             GetPokemon()
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -47,7 +47,7 @@ export default function AccountPortal() {
         )
     
         let data = await result.json()
-        // console.log(data)
+        console.log(data)
         setLoading(false)
         navigate('/')
         return data
@@ -67,7 +67,7 @@ export default function AccountPortal() {
                         <Button href="/pokemon" variant='success'>View Pokemon</Button>
                     </div>
                     <div className='text-center margin-top-button'>
-                        <Button href="/createpokemon" variant='success' disabled>Create Pokemon</Button>
+                        <Button href="/createpokemon" variant='success'>Create Pokemon</Button>
                     </div>
                     <div className='text-center margin-top-button'>
                         <Button href="/appointments" variant='success' disabled>View Appointments</Button>
