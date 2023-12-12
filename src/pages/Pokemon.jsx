@@ -23,7 +23,7 @@ export default function ViewPokemon() {
     useEffect(() => {
 
         if (user != null) {
-            console.log(user)
+            // console.log(user)
             setId(user.userID)
         }
     }, [user])
