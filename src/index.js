@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ViewPokemon from './pages/Pokemon';
 import CreatePokemon from './pages/CreatePokemon';
+import ViewAppointments from './pages/Appointments';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +26,7 @@ root.render(
         <Route path='/register' element={<Register />} />
         <Route path='/pokemon' element={<ViewPokemon />} />
         <Route path='/createpokemon' element={<CreatePokemon />} />
+        <Route path='appointments' element={<ViewAppointments />} />
       </Routes>
     </BrowserRouter>
     <App />
