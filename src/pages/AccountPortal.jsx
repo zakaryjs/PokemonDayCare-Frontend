@@ -73,7 +73,7 @@ export default function AccountPortal() {
                         <Button href="/appointments" variant='success'>View Appointments</Button>
                     </div>
                     <div className='text-center margin-top-button'>
-                        <Button href="/createappointment" variant='success' disabled>Create Appointment</Button>
+                        <Button href="/createappointment" variant='success'>Create Appointment</Button>
                     </div>
                     <div className='text-center margin-top-button'>
                         {!loading && <Button onClick={() => {logout()}} className='margin-top-button centred' variant='success'>Logout</Button>}

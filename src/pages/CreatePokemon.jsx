@@ -38,7 +38,7 @@ export default function CreatePokemon() {
         }
     }, [user])
 
-    async function createPokemon(nickname, species, gender, height, weight, notes, id) {
+    async function createPokemon(species, nickname, gender, height, weight, notes, id) {
         setLoading(true)
 
         let result = await fetch(
@@ -57,7 +57,6 @@ export default function CreatePokemon() {
 
         if (!data.message) {
             setLoading(false)
-            setId('')
             navigate('/pokemon')
         }
 

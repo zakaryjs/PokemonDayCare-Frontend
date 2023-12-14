@@ -13,23 +13,28 @@ import Register from './pages/Register';
 import ViewPokemon from './pages/Pokemon';
 import CreatePokemon from './pages/CreatePokemon';
 import ViewAppointments from './pages/Appointments';
+import CreateAppointment from './pages/CreateAppointment';
+import DateProvider from './contexts/DateProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
+  <DateProvider>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/portal' element={<AccountPortal />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/pokemon' element={<ViewPokemon />} />
-        <Route path='/createpokemon' element={<CreatePokemon />} />
-        <Route path='appointments' element={<ViewAppointments />} />
-      </Routes>
-    </BrowserRouter>
-    <App />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/portal' element={<AccountPortal />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/pokemon' element={<ViewPokemon />} />
+          <Route path='/createpokemon' element={<CreatePokemon />} />
+          <Route path='/appointments' element={<ViewAppointments />} />
+          <Route path='/createappointment' element={<CreateAppointment />} />
+        </Routes>
+      </BrowserRouter>
+      <App />
+  </DateProvider>
   </>
 );
 
