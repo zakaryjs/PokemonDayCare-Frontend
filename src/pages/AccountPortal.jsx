@@ -70,6 +70,9 @@ export default function AccountPortal() {
                         <Button href="/createpokemon" variant='success'>Create Pokemon</Button>
                     </div>
                     <div className='text-center margin-top-button'>
+                        <Button href='/updatepokemon' variant='success'>Update Pokemon</Button>
+                    </div>
+                    <div className='text-center margin-top-button'>
                         <Button href="/appointments" variant='success'>View Appointments</Button>
                     </div>
                     <div className='text-center margin-top-button'>

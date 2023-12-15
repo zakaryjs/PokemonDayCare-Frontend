@@ -15,6 +15,7 @@ import CreatePokemon from './pages/CreatePokemon';
 import ViewAppointments from './pages/Appointments';
 import CreateAppointment from './pages/CreateAppointment';
 import DateProvider from './contexts/DateProvider';
+import UpdatePokemon from './pages/UpdatePokemon';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,6 +30,7 @@ root.render(
           <Route path='/register' element={<Register />} />
           <Route path='/pokemon' element={<ViewPokemon />} />
           <Route path='/createpokemon' element={<CreatePokemon />} />
+          <Route path='/updatepokemon' element={<UpdatePokemon />} />
           <Route path='/appointments' element={<ViewAppointments />} />
           <Route path='/createappointment' element={<CreateAppointment />} />
         </Routes>
