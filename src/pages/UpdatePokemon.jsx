@@ -5,6 +5,8 @@ import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
 import Footer from "../components/Footer";
 import { Button } from "react-bootstrap";
+import LoadingGrid from "../components/spinners/Grid";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -17,6 +19,7 @@ export default function UpdatePokemon() {
     const [pokemonToModify, setPokemonToModify] = useState(null)
     const { refresh, user } = useRefresh();
     const [id, setId] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const [species, setSpecies] = useState("")
     const [nickname, setNickname] = useState("")
@@ -24,6 +27,8 @@ export default function UpdatePokemon() {
     const [height, setHeight] = useState("")
     const [weight, setWeight] = useState("")
     const [notes, setNotes] = useState("")
+
+    const navigate = useNavigate()
 
     async function GetPokemon() {
         if (id != null && user.isAdmin === true) {
@@ -117,6 +122,8 @@ export default function UpdatePokemon() {
 
     async function editPokemon(species, nickname, gender, height, weight, notes, id, ptm) {
 
+        setLoading(true)
+
         let result = await fetch(
             process.env.REACT_APP_POKEMON_BY_ID + ptm,
             {
@@ -131,6 +138,10 @@ export default function UpdatePokemon() {
 
         let data = await result.json()
         console.log(data)
+
+        setLoading(false)
+
+        navigate('/pokemon')
 
         return data
     }
@@ -187,8 +198,11 @@ export default function UpdatePokemon() {
                 <div>
                     <input type="text" id="notes-create-input" value={notes} onChange={(event) => setNotes(event.target.value)} />
                 </div>
-                <Button onClick={() => editPokemon(species, nickname, gender, height, weight, notes, id, pokemonToModify)} className='margin-top-button' variant='success'>Edit Pokemon</Button>
+                {!loading && <Button onClick={() => editPokemon(species, nickname, gender, height, weight, notes, id, pokemonToModify)} className='margin-top-button' variant='success'>Edit Pokemon</Button>}
             </form>
+            <div className='container margin-top-extra'>
+            {loading && <LoadingGrid />}
+            </div>
 
             <Footer />
         </>
