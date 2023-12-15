@@ -5,8 +5,7 @@ import HeaderImage from "../components/HeaderImage";
 import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
 import LoadingCircles from "../components/spinners/Circles";
-
-
+import { FaTrash } from "react-icons/fa";
 
 export default function ViewAppointments() {
 
@@ -80,6 +79,26 @@ export default function ViewAppointments() {
         }
     }
 
+    async function DeleteAppointment(id) {
+        let result = await fetch(
+            `http://localhost:3001/appointment/${id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            }
+        )
+
+        let data = await result.json()
+        console.log(data)
+
+        window.location.reload(false)
+
+        return data
+    }
+
 
     return (
         <>
@@ -103,6 +122,7 @@ export default function ViewAppointments() {
                     <h3>Species: {day.pokemon.species}</h3>
                     <h3>Type of Appointment: {day.typeOfAppointment}</h3>
                     {accountStatus.admin && <h3>{day.user.email}</h3>}
+                    <FaTrash onClick={() => {DeleteAppointment(day._id)}}/>
                 </div>
             ))}
             <Footer />

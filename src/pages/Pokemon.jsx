@@ -6,6 +6,7 @@ import { useRefresh } from "../hooks/UseRefresh";
 import LoadingCircles from "../components/spinners/Circles";
 import Footer from "../components/Footer";
 import '../styles/Card.css'
+import { FaTrash } from "react-icons/fa";
 
 export default function ViewPokemon() {
 
@@ -71,6 +72,26 @@ export default function ViewPokemon() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemon])
 
+    async function DeletePokemon(id) {
+        let result = await fetch(
+            `http://localhost:3001/pokemon/${id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            }
+        )
+
+        let data = await result.json()
+        console.log(data)
+
+        window.location.reload(false)
+
+        return data
+    }
+
 
     return (
         <>
@@ -86,6 +107,7 @@ export default function ViewPokemon() {
             )}
             {!loading && updatedPokemon[0] && updatedPokemon.map(day => (
                         <div className="centred pokemon-box" key={day.nickname}>
+                        <FaTrash onClick={() => DeletePokemon(day._id)}/>
                         <h3>{day.species}</h3>
                         <h4>Nickname: {day.nickname}</h4>
                         <h4>Gender: {day.gender}</h4>
