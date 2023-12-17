@@ -7,12 +7,11 @@ import { Button } from "react-bootstrap";
 import { useRefresh } from "../hooks/UseRefresh";
 import { useNavigate } from "react-router-dom";
 import LoadingGrid from "../components/spinners/Grid";
-
-
+import { usePokeApiFetch } from "../hooks/usePokeApiFetch";
 
 export default function CreatePokemon() {
     
-    const [species, setSpecies] = useState("")
+    const [species, setSpecies] = useState("bulbasaur")
     const [nickname, setNickname] = useState("")
     const [gender, setGender] = useState("")
     const [height, setHeight] = useState("")
@@ -20,13 +19,16 @@ export default function CreatePokemon() {
     const [notes, setNotes] = useState("")
 
     const { refresh, user } = useRefresh();
+    const { fetchedPokemon, getPokemon } = usePokeApiFetch()
     const [id, setId] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate()
 
     useEffect(() => {
         refresh()
+        getPokemon()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -55,10 +57,17 @@ export default function CreatePokemon() {
     
         let data = await result.json()
 
-        if (!data.message) {
+        console.log(data)
+
+        if (data.error) {
+            setLoading(false)
+            setError(data.error)
+        } else if (!data.message) {
             setLoading(false)
             navigate('/pokemon')
         }
+
+        
 
         // if (data.message) {
         //     setLoading(false)
@@ -67,7 +76,6 @@ export default function CreatePokemon() {
     
         return data
     }
-
 
     return (
         <>
@@ -85,8 +93,12 @@ export default function CreatePokemon() {
                 <div>
                     <label>Species</label>
                 </div>
-                <div>
-                    <input type="text" id="nickname-create-input" onChange={(event) => setSpecies(event.target.value)} />
+                <div> 
+                    {fetchedPokemon[0] && <select onChange={(event) => {setSpecies(event.target.value)}}>
+                        {fetchedPokemon.map(pokemon => (
+                            <option key={pokemon.name}>{pokemon.name}</option>
+                        ))}
+                        </select>}
                 </div>
                 <div>
                     <label>Gender</label>
@@ -119,6 +131,10 @@ export default function CreatePokemon() {
             <div className='container margin-top-extra'>
             {loading && <LoadingGrid />}
             </div>
+            {error?.errors?.nickname && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.nickname?.message}`}</p>}
+            {error?.errors?.gender && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.gender?.message}`}</p>}
+            {error?.errors?.height && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.height?.message}`}</p>}
+            {error?.errors?.weight && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.weight?.message}`}</p>}
             <Footer />
         </>
     )

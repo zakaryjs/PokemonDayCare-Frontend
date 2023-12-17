@@ -29,18 +29,33 @@ export default function CreateAppointment() {
     const [pickUpDateToSubmit, setPickUpDateToSubmit] = useState('2023-12-31T16:00:00.000Z')
 
     const [typeOfAppointment, setTypeOfAppointment] = useState('Casual Care')
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate()
 
     async function GetPokemon() {
         if (id != null && user.isAdmin === true) {
-            let result = await fetch(process.env.REACT_APP_ALL_POKEMON)
+            let result = await fetch(process.env.REACT_APP_ALL_POKEMON,
+                {
+                  method: 'GET',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+              })
             let data = await result.json()
             console.log(data)
             setPokemon(data)
         }
         if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id)
+            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id,
+                {
+                  method: 'GET',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+              })
             let data = await result.json()
             // console.log(data)
             setPokemon(data.pokemon)
@@ -139,7 +154,11 @@ export default function CreateAppointment() {
 
         let data = await result.json()
         
-        if (!data.message) {
+
+        if (data.error) {
+            setLoading(false)
+            setError(data.error)
+        } else if (!data.message) {
             setLoading(false)
             setId('')
             navigate('/appointments')
@@ -192,6 +211,10 @@ export default function CreateAppointment() {
             <div className='container margin-top-extra'>
             {loading && <LoadingGrid />}
             </div>
+            {error?.errors?.dropOffDate && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.dropOffDate?.message}`}</p>}
+            {error?.errors?.gender && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.gender?.message}`}</p>}
+            {error?.errors?.typeOfAppointment && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.typeOfAppointment?.message}`}</p>}
+            {error?.errors?.pokemon && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.pokemon?.message}`}</p>}
             <Footer />
         </>
     )
