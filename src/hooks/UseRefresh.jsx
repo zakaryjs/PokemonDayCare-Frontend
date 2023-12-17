@@ -24,7 +24,7 @@ export function useRefresh() {
       // console.log('validation', data)
 
       if (data.error) {
-        // console.log(data.error)
+        console.log(data.error)
         setLoggedIn(false)
       } if (data.user.isAdmin) {
         // console.log('verified as admin')
@@ -48,7 +48,15 @@ export function useRefresh() {
   async function getUserInfo() {
     if (user && user.userID) {
         let userID = user?.userID     
-        let result = await fetch(`${process.env.REACT_APP_BACKEND_BASE}${userID}`)
+        let result = await fetch(
+          `${process.env.REACT_APP_BACKEND_BASE}${userID}`,
+          {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        })
 
         let data = await result.json()
         setInfo(data)

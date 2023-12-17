@@ -27,18 +27,33 @@ export default function UpdatePokemon() {
     const [height, setHeight] = useState("")
     const [weight, setWeight] = useState("")
     const [notes, setNotes] = useState("")
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate()
 
     async function GetPokemon() {
         if (id != null && user.isAdmin === true) {
-            let result = await fetch(process.env.REACT_APP_ALL_POKEMON)
+            let result = await fetch(process.env.REACT_APP_ALL_POKEMON,
+                {
+                  method: 'GET',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+              })
             let data = await result.json()
             console.log(data)
             setPokemon(data)
         }
         if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id)
+            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id,
+                {
+                  method: 'GET',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+              })
             let data = await result.json()
             console.log(data)
             setPokemon(data.pokemon)
@@ -141,7 +156,13 @@ export default function UpdatePokemon() {
 
         setLoading(false)
 
-        navigate('/pokemon')
+        if (data.error) {
+            setLoading(false)
+            setError(data.error)
+        } else {
+            setLoading(false)
+            navigate('/pokemon')
+        }
 
         return data
     }
@@ -167,12 +188,6 @@ export default function UpdatePokemon() {
                 </div>
                 <div>
                     <input type="text" id="species-create-input" value={nickname} onChange={(event) => setNickname(event.target.value)} />
-                </div>
-                <div>
-                    <label>Species</label>
-                </div>
-                <div>
-                    <input type="text" id="nickname-create-input" value={species} onChange={(event) => setSpecies(event.target.value)} />
                 </div>
                 <div>
                     <label>Gender</label>
@@ -203,7 +218,10 @@ export default function UpdatePokemon() {
             <div className='container margin-top-extra'>
             {loading && <LoadingGrid />}
             </div>
-
+            {error?.errors?.nickname && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.nickname?.message}`}</p>}
+            {error?.errors?.gender && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.gender?.message}`}</p>}
+            {error?.errors?.height && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.height?.message}`}</p>}
+            {error?.errors?.weight && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.weight?.message}`}</p>}
             <Footer />
         </>
     )

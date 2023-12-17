@@ -42,13 +42,29 @@ export default function ViewPokemon() {
 
     async function GetPokemon() {
         if (id != null && user.isAdmin === true) {
-            let result = await fetch(process.env.REACT_APP_ALL_POKEMON)
+            let result = await fetch(
+                process.env.REACT_APP_ALL_POKEMON,
+                {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                })
             let data = await result.json()
             console.log(data)
             setPokemon(data)
         }
         if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id)
+            let result = await fetch(
+                process.env.REACT_APP_POKEMON_BY_ID + id,
+                {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                })
             let data = await result.json()
             setPokemon(data)
         }
@@ -74,7 +90,7 @@ export default function ViewPokemon() {
 
     async function DeletePokemon(id) {
         let result = await fetch(
-            `http://localhost:3001/pokemon/${id}`,
+            process.env.REACT_APP_POKEMON_BY_ID + id,
             {
                 method: 'DELETE',
                 headers: {
@@ -91,7 +107,6 @@ export default function ViewPokemon() {
 
         return data
     }
-
 
     return (
         <>
@@ -121,5 +136,3 @@ export default function ViewPokemon() {
         </>
     )
 }
-
-// https://mui.com/x/react-date-pickers/date-picker/
