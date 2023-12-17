@@ -45,7 +45,7 @@ export default function CreateAppointment() {
               })
             let data = await result.json()
             console.log(data)
-            setPokemon(data)
+            setPokemon(data.pokemon)
         }
         if (id != null && user.isAdmin === false) {
             let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id,

@@ -78,7 +78,14 @@ export default function ViewAppointments() {
 
     async function GetAppointment() {
         if (id != null && user.isAdmin === true) {
-            let result  = await fetch(process.env.REACT_APP_ALL_APPOINTMENTS)
+            let result  = await fetch(process.env.REACT_APP_ALL_APPOINTMENTS,
+                {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                })
             let data = await result.json()
             console.log(data)
             setAppointment(data)
