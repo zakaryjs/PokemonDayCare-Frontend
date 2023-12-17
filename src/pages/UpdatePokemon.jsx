@@ -116,7 +116,15 @@ export default function UpdatePokemon() {
     }, [pokemonToSubmit])
 
     async function GetPokemonData(pokemon) {
-        let result = await fetch(process.env.REACT_APP_POKEMON_FIND + pokemon)
+        let result = await fetch(
+            process.env.REACT_APP_POKEMON_FIND + pokemon,
+            {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            })
         let data = await result.json()
         console.log(data)
         setNickname(data.pokemon[0].nickname)
