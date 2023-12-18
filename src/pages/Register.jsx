@@ -10,17 +10,13 @@ import { useNavigate } from 'react-router-dom';
 import LoadingGrid from '../components/spinners/Grid';
 import Footer from '../components/Footer';
 import HeaderImage from '../components/HeaderImage';
+import { usePasswordToggle } from '../hooks/usePasswordToggle';
 
 export default function Register() {
 
     const navigate = useNavigate()
-    const [passwordVisibility, setPasswordVisibility] = useState(false)
+    const { passwordVisibility, togglePassword } = usePasswordToggle()
     const [loading, setLoading] = useState(false)
-
-    const togglePassword = (event) => {
-        event.preventDefault()
-        setPasswordVisibility(!passwordVisibility)
-    }
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -48,8 +44,7 @@ export default function Register() {
         if (data.user) {
             setLoading(false)
             navigate('/login')
-        }
-        if (data.error) {
+        } if (data.error) {
             setLoading(false)
             setError(data.error)
         }

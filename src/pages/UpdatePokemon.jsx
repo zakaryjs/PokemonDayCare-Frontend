@@ -19,7 +19,6 @@ export default function UpdatePokemon() {
     const [pokemonToModify, setPokemonToModify] = useState(null)
     const { refresh, user, id } = useRefresh();
     
-
     const [species, setSpecies] = useState("")
     const [nickname, setNickname] = useState("")
     const [gender, setGender] = useState("")

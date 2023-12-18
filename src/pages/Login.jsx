@@ -9,18 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import LoadingGrid from '../components/spinners/Grid';
 import Footer from '../components/Footer';
 import HeaderImage from '../components/HeaderImage';
+import { usePasswordToggle } from '../hooks/usePasswordToggle';
 
 export default function Login() {
 
     const navigate = useNavigate()
-    const [passwordVisibility, setPasswordVisibility] = useState(false)
+    const { passwordVisibility, togglePassword } = usePasswordToggle()
     const [loading, setLoading] = useState(false)
-
-    const togglePassword = (event) => {
-        event.preventDefault()
-        setPasswordVisibility(!passwordVisibility)
-    }
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
@@ -45,8 +40,7 @@ export default function Login() {
         if (!data.message) {
             setLoading(false)
             navigate('/portal')
-        }
-        if (data.message) {
+        } else {
             setLoading(false)
             setError(data.message)
         }

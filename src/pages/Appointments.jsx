@@ -59,7 +59,6 @@ export default function ViewAppointments() {
                 }   
             })
             Promise.all(pokemonSprites).then(updatedAppointmentList => {
-                console.log(updatedAppointmentList)
                 setUpdatedAppointment(updatedAppointmentList)
                 setLoading(false)
             })

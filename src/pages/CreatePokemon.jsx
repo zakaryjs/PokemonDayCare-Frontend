@@ -22,7 +22,6 @@ export default function CreatePokemon() {
     const { fetchedPokemon, getPokemon } = usePokeApiFetch()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -55,7 +54,6 @@ export default function CreatePokemon() {
             setLoading(false)
             navigate('/pokemon')
         }
-    
         return data
     }
 
@@ -64,7 +62,6 @@ export default function CreatePokemon() {
             <BackgroundParticles />
             <HeaderImage />
             <NavBar />
-
             <form className="centred margin-top">
                 <div>
                     <label>Nickname</label>

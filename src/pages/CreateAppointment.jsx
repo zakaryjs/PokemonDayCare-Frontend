@@ -22,13 +22,10 @@ export default function CreateAppointment() {
     const { refresh, user } = useRefresh();
     const [id, setId] = useState(null)
     const [loading, setLoading] = useState(false)
-
     const [dropOffDate, setDropOffDate] = useState(null)
     const [dropOffDateToSubmit, setDropOffDateToSubmit] = useState('2023-12-31T16:00:00.000Z')
-
     const [pickUpDate, setPickUpDate] = useState(null)
     const [pickUpDateToSubmit, setPickUpDateToSubmit] = useState('2023-12-31T16:00:00.000Z')
-
     const [typeOfAppointment, setTypeOfAppointment] = useState('Casual Care')
     const [error, setError] = useState(null)
 
@@ -71,11 +68,9 @@ export default function CreateAppointment() {
     
     useEffect(() => {
         if (pokemonToSubmit[0]) {
-            // console.log(pokemonToSubmit)
             // eslint-disable-next-line no-unused-vars
             let [newPoke, pokeId] = pokemonToSubmit.split("-")
             let trimmed = pokeId.trim()
-            // console.log(pokeId)
             setFormattedPokemon(trimmed)
         }
 
@@ -83,24 +78,16 @@ export default function CreateAppointment() {
 
     useEffect(() => {
         if (dropOffDate != null) {
-            console.log(dropOffDate['$d'])
             let formattedDropOffDate = Date.parse(dropOffDate['$d'])
-            console.log(formattedDropOffDate)
             let formattedDropOffDateAsDate = new Date(formattedDropOffDate)
-            console.log(formattedDropOffDateAsDate)
-            console.log(formattedDropOffDateAsDate.toISOString())
             setDropOffDateToSubmit(formattedDropOffDateAsDate.toISOString())
         }
     }, [dropOffDate])
 
     useEffect(() => {
         if (pickUpDate != null) {
-            console.log(pickUpDate['$d'])
             let formattedPickUpDate = Date.parse(pickUpDate['$d'])
-            console.log(formattedPickUpDate)
             let formattedPickUpDateAsDate = new Date(formattedPickUpDate)
-            console.log(formattedPickUpDateAsDate)
-            console.log(formattedPickUpDateAsDate.toISOString())
             setPickUpDateToSubmit(formattedPickUpDateAsDate.toISOString())
         }
     }, [pickUpDate])
@@ -121,7 +108,6 @@ export default function CreateAppointment() {
         )
 
         let data = await result.json()
-        
 
         if (data.error) {
             setLoading(false)

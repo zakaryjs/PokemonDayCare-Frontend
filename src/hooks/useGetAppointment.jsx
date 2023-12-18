@@ -17,7 +17,6 @@ export function useGetAppointment() {
                     credentials: "include",
                 })
             let data = await result.json()
-            console.log(data)
             setAppointment(data)
         }
         if (id != null && user.isAdmin === false) {
@@ -30,7 +29,6 @@ export function useGetAppointment() {
                   credentials: "include",
               })
             let data = await result.json()
-            console.log(data)
             setAppointment(data)
         }
     }
