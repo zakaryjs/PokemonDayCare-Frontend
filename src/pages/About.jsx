@@ -4,10 +4,8 @@ import HeaderImage from '../components/HeaderImage';
 import NavBar from '../components/NavBar';
 import '../styles/About.css'
 
-
 export default function About() {
     
-
     return (
         <>
         <BackgroundParticles />
