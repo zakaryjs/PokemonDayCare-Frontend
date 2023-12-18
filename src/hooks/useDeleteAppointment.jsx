@@ -13,10 +13,7 @@ export function useDeleteAppointment() {
         )
 
         let data = await result.json()
-        console.log(data)
-
         window.location.reload(false)
-
         return data
     }
 

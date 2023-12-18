@@ -19,7 +19,6 @@ export function useGetPokemon() {
                     credentials: "include",
                 })
             let data = await result.json()
-            console.log(data)
             setPokemon(data.pokemon)
         }
         if (id != null && user.isAdmin === false) {
