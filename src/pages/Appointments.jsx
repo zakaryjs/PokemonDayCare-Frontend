@@ -6,11 +6,14 @@ import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
 import LoadingCircles from "../components/spinners/Circles";
 import { FaTrash } from "react-icons/fa";
+import { useGetAppointment } from "../hooks/useGetAppointment";
+import { useDeleteAppointment } from "../hooks/useDeleteAppointment";
 
 export default function ViewAppointments() {
 
     const { refresh, user, accountStatus, id } = useRefresh();
-    const [appointments, setAppointment] = useState({})
+    const { appointments, GetAppointment } = useGetAppointment()
+    const { DeleteAppointment } = useDeleteAppointment()
     const [updatedAppointments, setUpdatedAppointment] = useState({})
     const [loading, setLoading] = useState(true)
 
@@ -21,11 +24,9 @@ export default function ViewAppointments() {
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
-            console.log(`getting all appointments`)
             GetAppointment()
         }
         if (id != null && user.isAdmin === false) {
-            console.log(`getting user appointments`)
             GetAppointment()
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,8 +56,7 @@ export default function ViewAppointments() {
                     const [splitPickUpDate] = pickUpDate.split("T")
                     const [splitPickUpYear, splitPickUpMonth, splitPickUpDays] = splitPickUpDate.split("-")
                     return {...appointment, spriteUrl, splitDropOffYear, splitDropOffMonth, splitDropOffDays, splitPickUpYear, splitPickUpMonth, splitPickUpDays}
-                }
-                
+                }   
             })
             Promise.all(pokemonSprites).then(updatedAppointmentList => {
                 console.log(updatedAppointmentList)
@@ -65,55 +65,6 @@ export default function ViewAppointments() {
             })
         }
     }, [appointments])
-
-    async function GetAppointment() {
-        if (id != null && user.isAdmin === true) {
-            let result  = await fetch(process.env.REACT_APP_ALL_APPOINTMENTS,
-                {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                })
-            let data = await result.json()
-            console.log(data)
-            setAppointment(data)
-        }
-        if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_APPOINTMENT_BY_ID + id,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            console.log(data)
-            setAppointment(data)
-        }
-    }
-
-    async function DeleteAppointment(id) {
-        let result = await fetch(
-            process.env.REACT_APP_APPOINTMENT_BY_ID + id,
-            {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            }
-        )
-
-        let data = await result.json()
-        console.log(data)
-
-        window.location.reload(false)
-
-        return data
-    }
 
     return (
         <>
