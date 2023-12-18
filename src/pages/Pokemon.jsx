@@ -68,8 +68,8 @@ export default function ViewPokemon() {
                         <h3>{day.species}</h3>
                         <h4>Nickname: {day.nickname}</h4>
                         <h4>Gender: {day.gender}</h4>
-                        <h4>Weight: {day.weight}</h4>
-                        <h4>Height: {day.height}</h4>
+                        <h4>Weight: {day.weight}kg</h4>
+                        <h4>Height: {day.height}cm</h4>
                         <h4>Notes: {day.notes}</h4>
                         <img src={day.spriteUrl} height={125} width={125} alt='egg' />
                         </div>
