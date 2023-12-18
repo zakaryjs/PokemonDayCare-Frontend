@@ -8,8 +8,6 @@ import { Button } from "react-bootstrap";
 import LoadingGrid from "../components/spinners/Grid";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function UpdatePokemon() {
 
     const [pokemon, setPokemon] = useState({})
@@ -17,8 +15,7 @@ export default function UpdatePokemon() {
     // eslint-disable-next-line no-unused-vars
     const [formattedPokemon, setFormattedPokemon] = useState('')
     const [pokemonToModify, setPokemonToModify] = useState(null)
-    const { refresh, user } = useRefresh();
-    const [id, setId] = useState(null)
+    const { refresh, user, id } = useRefresh();
     const [loading, setLoading] = useState(false)
 
     const [species, setSpecies] = useState("")
@@ -66,13 +63,6 @@ export default function UpdatePokemon() {
     }, [])
 
     useEffect(() => {
-        if (user != null) {
-            // console.log(user)
-            setId(user.userID)
-        }
-    }, [user])
-
-    useEffect(() => {
         if (id != null && user.isAdmin === true) {
             console.log(`getting all pokemon`)
             GetPokemon()
@@ -96,7 +86,6 @@ export default function UpdatePokemon() {
             setNotes(pokemon[0].notes)
         }
     }, [pokemon])
-
 
     function handlePokemonChange(event) {
         setPokemonToSubmit(event.target.value)
@@ -180,8 +169,6 @@ export default function UpdatePokemon() {
             <BackgroundParticles />
             <HeaderImage />
             <NavBar />
-
-
             <form className="centred margin-top">
                 <div>
                     {pokemon[0] && 

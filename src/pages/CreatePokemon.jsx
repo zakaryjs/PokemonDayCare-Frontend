@@ -18,9 +18,8 @@ export default function CreatePokemon() {
     const [weight, setWeight] = useState("")
     const [notes, setNotes] = useState("")
 
-    const { refresh, user } = useRefresh();
+    const { refresh, id } = useRefresh();
     const { fetchedPokemon, getPokemon } = usePokeApiFetch()
-    const [id, setId] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -31,14 +30,6 @@ export default function CreatePokemon() {
         getPokemon()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    useEffect(() => {
-
-        if (user != null) {
-            // console.log(user)
-            setId(user.userID)
-        }
-    }, [user])
 
     async function createPokemon(species, nickname, gender, height, weight, notes, id) {
         setLoading(true)
@@ -57,8 +48,6 @@ export default function CreatePokemon() {
     
         let data = await result.json()
 
-        console.log(data)
-
         if (data.error) {
             setLoading(false)
             setError(data.error)
@@ -66,13 +55,6 @@ export default function CreatePokemon() {
             setLoading(false)
             navigate('/pokemon')
         }
-
-        
-
-        // if (data.message) {
-        //     setLoading(false)
-        //     setError(data.message)
-        // }
     
         return data
     }

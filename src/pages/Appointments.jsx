@@ -9,8 +9,7 @@ import { FaTrash } from "react-icons/fa";
 
 export default function ViewAppointments() {
 
-    const { refresh, user, accountStatus } = useRefresh();
-    const [id, setId] = useState(null)
+    const { refresh, user, accountStatus, id } = useRefresh();
     const [appointments, setAppointment] = useState({})
     const [updatedAppointments, setUpdatedAppointment] = useState({})
     const [loading, setLoading] = useState(true)
@@ -19,14 +18,6 @@ export default function ViewAppointments() {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    useEffect(() => {
-
-        if (user != null) {
-            // console.log(user)
-            setId(user.userID)
-        }
-    }, [user])
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
@@ -74,7 +65,6 @@ export default function ViewAppointments() {
             })
         }
     }, [appointments])
-
 
     async function GetAppointment() {
         if (id != null && user.isAdmin === true) {
@@ -124,7 +114,6 @@ export default function ViewAppointments() {
 
         return data
     }
-
 
     return (
         <>

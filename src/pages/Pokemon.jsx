@@ -10,8 +10,7 @@ import { FaTrash } from "react-icons/fa";
 
 export default function ViewPokemon() {
 
-    const { refresh, user, accountStatus } = useRefresh();
-    const [id, setId] = useState(null)
+    const { refresh, user, accountStatus, id } = useRefresh();
     const [pokemon, setPokemon] = useState({})
     const [updatedPokemon, setUpdatedPokemon] = useState({})
     const [loading, setLoading] = useState(true)
@@ -20,14 +19,6 @@ export default function ViewPokemon() {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    useEffect(() => {
-
-        if (user != null) {
-            // console.log(user)
-            setId(user.userID)
-        }
-    }, [user])
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {

@@ -5,6 +5,7 @@ export function useRefresh() {
   const [user, setUser] = useState(null);
   const [info, setInfo] = useState(null)
   const [loggedIn, setLoggedIn] = useState(true)
+  const [id, setId] = useState(null)
 
   async function refresh() {
     try {
@@ -69,7 +70,14 @@ export function useRefresh() {
     getUserInfo()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-  
 
-  return { refresh, accountStatus, user, info, loggedIn };
+  useEffect(() => {
+
+    if (user != null) {
+        // console.log(user)
+        setId(user.userID)
+    }
+}, [user])
+  
+  return { refresh, accountStatus, user, info, loggedIn, id };
 }
