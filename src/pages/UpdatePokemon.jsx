@@ -6,18 +6,19 @@ import { useRefresh } from "../hooks/UseRefresh";
 import Footer from "../components/Footer";
 import { Button } from "react-bootstrap";
 import LoadingGrid from "../components/spinners/Grid";
-import { useNavigate } from "react-router-dom";
 import { useGetPokemon } from "../hooks/useGetPokemon";
+import { useUpdatePokemon } from "../hooks/useUpdatePokemon";
 
 export default function UpdatePokemon() {
 
     const { pokemon, GetPokemon } = useGetPokemon();
+    const { error, loading, editPokemon } = useUpdatePokemon()
     const [pokemonToSubmit, setPokemonToSubmit] = useState('')
     // eslint-disable-next-line no-unused-vars
     const [formattedPokemon, setFormattedPokemon] = useState('')
     const [pokemonToModify, setPokemonToModify] = useState(null)
     const { refresh, user, id } = useRefresh();
-    const [loading, setLoading] = useState(false)
+    
 
     const [species, setSpecies] = useState("")
     const [nickname, setNickname] = useState("")
@@ -25,9 +26,6 @@ export default function UpdatePokemon() {
     const [height, setHeight] = useState("")
     const [weight, setWeight] = useState("")
     const [notes, setNotes] = useState("")
-    const [error, setError] = useState(null)
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         refresh()
@@ -97,38 +95,6 @@ export default function UpdatePokemon() {
             GetPokemonData(pokemonToModify)
         }
     }, [pokemonToModify])
-
-    async function editPokemon(species, nickname, gender, height, weight, notes, id, ptm) {
-
-        setLoading(true)
-
-        let result = await fetch(
-            process.env.REACT_APP_POKEMON_BY_ID + ptm,
-            {
-                method: 'PUT',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify({species: species, nickname: nickname, gender: gender, height: height, weight: weight, notes: notes})
-            }
-        )
-
-        let data = await result.json()
-        console.log(data)
-
-        setLoading(false)
-
-        if (data.error) {
-            setLoading(false)
-            setError(data.error)
-        } else {
-            setLoading(false)
-            navigate('/pokemon')
-        }
-
-        return data
-    }
 
     return (
         <>
