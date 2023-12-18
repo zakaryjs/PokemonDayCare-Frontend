@@ -7,18 +7,16 @@ import Footer from "../components/Footer";
 import { Button } from "react-bootstrap";
 import LoadingGrid from "../components/spinners/Grid";
 import { useNavigate } from "react-router-dom";
-
-
+import { useGetPokemon } from "../hooks/useGetPokemon";
 
 export default function UpdatePokemon() {
 
-    const [pokemon, setPokemon] = useState({})
+    const { pokemon, GetPokemon } = useGetPokemon();
     const [pokemonToSubmit, setPokemonToSubmit] = useState('')
     // eslint-disable-next-line no-unused-vars
     const [formattedPokemon, setFormattedPokemon] = useState('')
     const [pokemonToModify, setPokemonToModify] = useState(null)
-    const { refresh, user } = useRefresh();
-    const [id, setId] = useState(null)
+    const { refresh, user, id } = useRefresh();
     const [loading, setLoading] = useState(false)
 
     const [species, setSpecies] = useState("")
@@ -31,46 +29,10 @@ export default function UpdatePokemon() {
 
     const navigate = useNavigate()
 
-    async function GetPokemon() {
-        if (id != null && user.isAdmin === true) {
-            let result = await fetch(process.env.REACT_APP_ALL_POKEMON,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            console.log(data)
-            setPokemon(data.pokemon)
-        }
-        if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            console.log(data)
-            setPokemon(data.pokemon)
-        }
-    }
-
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    useEffect(() => {
-        if (user != null) {
-            // console.log(user)
-            setId(user.userID)
-        }
-    }, [user])
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
@@ -96,7 +58,6 @@ export default function UpdatePokemon() {
             setNotes(pokemon[0].notes)
         }
     }, [pokemon])
-
 
     function handlePokemonChange(event) {
         setPokemonToSubmit(event.target.value)
@@ -180,8 +141,6 @@ export default function UpdatePokemon() {
             <BackgroundParticles />
             <HeaderImage />
             <NavBar />
-
-
             <form className="centred margin-top">
                 <div>
                     {pokemon[0] && 
