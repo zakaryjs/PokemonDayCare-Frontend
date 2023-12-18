@@ -49,12 +49,10 @@ export default function Register() {
             setLoading(false)
             navigate('/login')
         }
-
         if (data.error) {
             setLoading(false)
             setError(data.error)
         }
-    
         return data
     }
 

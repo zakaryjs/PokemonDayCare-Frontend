@@ -8,11 +8,13 @@ import Footer from "../components/Footer";
 import '../styles/Card.css'
 import { FaTrash } from "react-icons/fa";
 import { useGetPokemon } from "../hooks/useGetPokemon";
+import { useDeletePokemon } from "../hooks/useDeletePokemon";
 
 export default function ViewPokemon() {
 
     const { refresh, user, accountStatus, id } = useRefresh();
     const { pokemon, GetPokemon } = useGetPokemon();
+    const { DeletePokemon } = useDeletePokemon()
     const [updatedPokemon, setUpdatedPokemon] = useState({})
     const [loading, setLoading] = useState(true)
 
@@ -47,23 +49,6 @@ export default function ViewPokemon() {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemon])
-
-    async function DeletePokemon(id) {
-        let result = await fetch(
-            process.env.REACT_APP_POKEMON_BY_ID + id,
-            {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            }
-        )
-
-        let data = await result.json()
-        window.location.reload(false)
-        return data
-    }
 
     return (
         <>
