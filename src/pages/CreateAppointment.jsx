@@ -10,12 +10,13 @@ import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import LoadingGrid from "../components/spinners/Grid";
+import { useGetPokemon } from "../hooks/useGetPokemon";
 
 dayjs.extend(utc);
 
 export default function CreateAppointment() {
 
-    const [pokemon, setPokemon] = useState({})
+    const { pokemon, GetPokemon } = useGetPokemon()
     const [pokemonToSubmit, setPokemonToSubmit] = useState('')
     const [formattedPokemon, setFormattedPokemon] = useState('')
     const { refresh, user } = useRefresh();
@@ -33,35 +34,6 @@ export default function CreateAppointment() {
 
     const navigate = useNavigate()
 
-    async function GetPokemon() {
-        if (id != null && user.isAdmin === true) {
-            let result = await fetch(process.env.REACT_APP_ALL_POKEMON,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            console.log(data)
-            setPokemon(data.pokemon)
-        }
-        if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            // console.log(data)
-            setPokemon(data.pokemon)
-        }
-    }
-
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,18 +41,15 @@ export default function CreateAppointment() {
 
     useEffect(() => {
         if (user != null) {
-            // console.log(user)
             setId(user.userID)
         }
     }, [user])
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
-            console.log(`getting all pokemon`)
             GetPokemon()
         }
         if (id != null && user.isAdmin === false) {
-            console.log(`getting users pokemon`)
             GetPokemon()
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,7 +57,6 @@ export default function CreateAppointment() {
 
     useEffect(() => {
         if (pokemon[0]) {
-            console.log(pokemon)
             setFormattedPokemon(pokemon[0]._id)
         }
     }, [pokemon])

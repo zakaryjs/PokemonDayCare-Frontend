@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
 export function useRefresh() {
   const [accountStatus, setAccountStatus] = useState({});
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useContext(UserContext)
+  const {id, setId} = useContext(UserContext)
   const [info, setInfo] = useState(null)
   const [loggedIn, setLoggedIn] = useState(true)
-  const [id, setId] = useState(null)
 
   async function refresh() {
     try {
@@ -77,6 +78,7 @@ export function useRefresh() {
         // console.log(user)
         setId(user.userID)
     }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [user])
   
   return { refresh, accountStatus, user, info, loggedIn, id };

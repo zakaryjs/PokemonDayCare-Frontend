@@ -7,10 +7,11 @@ import Footer from "../components/Footer";
 import { Button } from "react-bootstrap";
 import LoadingGrid from "../components/spinners/Grid";
 import { useNavigate } from "react-router-dom";
+import { useGetPokemon } from "../hooks/useGetPokemon";
 
 export default function UpdatePokemon() {
 
-    const [pokemon, setPokemon] = useState({})
+    const { pokemon, GetPokemon } = useGetPokemon();
     const [pokemonToSubmit, setPokemonToSubmit] = useState('')
     // eslint-disable-next-line no-unused-vars
     const [formattedPokemon, setFormattedPokemon] = useState('')
@@ -27,35 +28,6 @@ export default function UpdatePokemon() {
     const [error, setError] = useState(null)
 
     const navigate = useNavigate()
-
-    async function GetPokemon() {
-        if (id != null && user.isAdmin === true) {
-            let result = await fetch(process.env.REACT_APP_ALL_POKEMON,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            console.log(data)
-            setPokemon(data.pokemon)
-        }
-        if (id != null && user.isAdmin === false) {
-            let result = await fetch(process.env.REACT_APP_POKEMON_BY_ID + id,
-                {
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-              })
-            let data = await result.json()
-            console.log(data)
-            setPokemon(data.pokemon)
-        }
-    }
 
     useEffect(() => {
         refresh()

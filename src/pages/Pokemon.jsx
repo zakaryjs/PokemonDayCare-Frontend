@@ -7,11 +7,12 @@ import LoadingCircles from "../components/spinners/Circles";
 import Footer from "../components/Footer";
 import '../styles/Card.css'
 import { FaTrash } from "react-icons/fa";
+import { useGetPokemon } from "../hooks/useGetPokemon";
 
 export default function ViewPokemon() {
 
     const { refresh, user, accountStatus, id } = useRefresh();
-    const [pokemon, setPokemon] = useState({})
+    const { pokemon, GetPokemon } = useGetPokemon();
     const [updatedPokemon, setUpdatedPokemon] = useState({})
     const [loading, setLoading] = useState(true)
 
@@ -22,7 +23,6 @@ export default function ViewPokemon() {
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
-            console.log(`getting all pokemon`)
             GetPokemon()
         }
         if (id != null && user.isAdmin === false) {
@@ -31,39 +31,9 @@ export default function ViewPokemon() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
-    async function GetPokemon() {
-        if (id != null && user.isAdmin === true) {
-            let result = await fetch(
-                process.env.REACT_APP_ALL_POKEMON,
-                {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                })
-            let data = await result.json()
-            console.log(data)
-            setPokemon(data)
-        }
-        if (id != null && user.isAdmin === false) {
-            let result = await fetch(
-                process.env.REACT_APP_POKEMON_BY_ID + id,
-                {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                })
-            let data = await result.json()
-            setPokemon(data)
-        }
-    }
-
     useEffect(() => {
-        if (pokemon.pokemon ) {
-            const pokemonSprites = pokemon?.pokemon.map(pokemon => {
+        if (pokemon[0]) {
+            const pokemonSprites = pokemon.map(pokemon => {
                 let pokemonName = pokemon.species.toLowerCase()
                 return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(response => response.json()).then(data => {
                     const spriteUrl = data.sprites.front_default
