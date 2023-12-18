@@ -46,7 +46,6 @@ export default function Login() {
             setLoading(false)
             navigate('/portal')
         }
-
         if (data.message) {
             setLoading(false)
             setError(data.message)

@@ -44,11 +44,9 @@ export default function Register() {
         )
     
         let data = await result.json()
-        // console.log(data)
     
         if (data.user) {
             setLoading(false)
-            console.log('Registration successful, redirecting to login page...')
             navigate('/login')
         }
 
@@ -59,7 +57,6 @@ export default function Register() {
     
         return data
     }
-
 
     return (
         <>

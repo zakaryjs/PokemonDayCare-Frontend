@@ -36,11 +36,9 @@ export default function UpdatePokemon() {
 
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
-            console.log(`getting all pokemon`)
             GetPokemon()
         }
         if (id != null && user.isAdmin === false) {
-            console.log(`getting users pokemon`)
             GetPokemon()
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,11 +63,9 @@ export default function UpdatePokemon() {
 
     useEffect(() => {
         if (pokemonToSubmit[0]) {
-            console.log(pokemonToSubmit)
             // eslint-disable-next-line no-unused-vars
             let [newPoke, pokeId] = pokemonToSubmit.split("-")
             let trimmed = pokeId.trim()
-            console.log(pokeId)
             setFormattedPokemon(trimmed)
             setPokemonToModify(trimmed)
         }
@@ -87,7 +83,6 @@ export default function UpdatePokemon() {
                 credentials: "include",
             })
         let data = await result.json()
-        console.log(data)
         setNickname(data.pokemon[0].nickname)
         setSpecies(data.pokemon[0].species)
         setGender(data.pokemon[0].gender)
@@ -98,7 +93,6 @@ export default function UpdatePokemon() {
     }
 
     useEffect(() => {
-        console.log(pokemonToModify)
         if (pokemonToModify != null) {
             GetPokemonData(pokemonToModify)
         }
