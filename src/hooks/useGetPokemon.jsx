@@ -23,7 +23,6 @@ export function useGetPokemon() {
             setPokemon(data)
         }
         if (id != null && user.isAdmin === false) {
-            console.log('ge')
             let result = await fetch(
                 process.env.REACT_APP_POKEMON_BY_ID + id,
                 {

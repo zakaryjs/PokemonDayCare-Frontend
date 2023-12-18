@@ -41,7 +41,6 @@ export default function ViewPokemon() {
                 })
             })
             Promise.all(pokemonSprites).then(updatedPokemonList => {
-                // console.log(updatedPokemonList)
                 setUpdatedPokemon(updatedPokemonList)
                 setLoading(false)
             })
@@ -62,10 +61,7 @@ export default function ViewPokemon() {
         )
 
         let data = await result.json()
-        console.log(data)
-
         window.location.reload(false)
-
         return data
     }
 

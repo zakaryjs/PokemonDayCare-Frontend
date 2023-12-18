@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getTime } from '../functions/getTime';
-import { useNavigate } from 'react-router-dom';
 import BackgroundParticles from '../components/BackgroundParticles';
 import NavBar from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
@@ -10,14 +9,15 @@ import '../styles/AccountPortal.css'
 import {useRefresh} from '../hooks/UseRefresh';
 import Footer from '../components/Footer';
 import HeaderImage from '../components/HeaderImage';
+import { useLogout } from '../hooks/useLogout';
+import { useNavigate } from 'react-router-dom';
 
 export default function AccountPortal() {
 
-    const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
     const { refresh, accountStatus, user, info, loggedIn } = useRefresh();
-
+    const { loading, logout } = useLogout();
     const welcome = getTime()
+    const navigate = useNavigate()
 
     useEffect(() => {
         refresh()
@@ -32,26 +32,6 @@ export default function AccountPortal() {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loggedIn])
-
-    async function logout() {
-        setLoading(true)
-        let result = await fetch(
-            process.env.REACT_APP_BACKEND_LOGOUT,
-            {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            }
-        )
-    
-        let data = await result.json()
-        console.log(data)
-        setLoading(false)
-        navigate('/')
-        return data
-    }
 
         return (
         <>
@@ -94,5 +74,4 @@ export default function AccountPortal() {
             <Footer />
         </>
     )
-
 }
