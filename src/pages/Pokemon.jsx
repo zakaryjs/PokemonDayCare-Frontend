@@ -43,6 +43,9 @@ export default function ViewPokemon() {
                 setLoading(false)
             })
         }
+        if (!pokemon[0] && id != null) {
+            setLoading(false)
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemon])
 
