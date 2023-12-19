@@ -1,14 +1,10 @@
 import { useEffect } from 'react';
 import { getTime } from '../functions/getTime';
-import BackgroundParticles from '../components/BackgroundParticles';
-import NavBar from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
 import LoadingCircles from '../components/spinners/Circles';
 import LoadingGrid from '../components/spinners/Grid';
 import '../styles/AccountPortal.css'
 import {useRefresh} from '../hooks/UseRefresh';
-import Footer from '../components/Footer';
-import HeaderImage from '../components/HeaderImage';
 import { useLogout } from '../hooks/useLogout';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,9 +31,6 @@ export default function AccountPortal() {
 
         return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             {info?.firstName && (
                 <>
                     {accountStatus.admin && <p>Admin: TRUE</p>}
@@ -71,7 +64,6 @@ export default function AccountPortal() {
                     <LoadingCircles />
                 </div>
             )}
-            <Footer />
         </>
     )
 }

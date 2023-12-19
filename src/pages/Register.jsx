@@ -1,15 +1,11 @@
 import '../App.css'
-import NavBar from '../components/NavBar'
 import '../styles/Home.css'
 import Button from 'react-bootstrap/Button';
-import BackgroundParticles from '../components/BackgroundParticles';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingGrid from '../components/spinners/Grid';
-import Footer from '../components/Footer';
-import HeaderImage from '../components/HeaderImage';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
 
 export default function Register() {
@@ -53,9 +49,6 @@ export default function Register() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             <h1 className='margin-top'>Register</h1>
             <form className='centred margin-top'>
                 <div>
@@ -93,7 +86,6 @@ export default function Register() {
             {error?.errors?.lastName && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.lastName?.message}`}</p>}
             {error?.errors?.email && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.email?.message}`}</p>}
             {error?.errorMessage && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errorMessage}`}</p>}
-            <Footer />
         </>
     )
 }

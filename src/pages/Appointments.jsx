@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import BackgroundParticles from "../components/BackgroundParticles";
-import Footer from "../components/Footer";
-import HeaderImage from "../components/HeaderImage";
-import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
 import LoadingCircles from "../components/spinners/Circles";
 import { FaTrash } from "react-icons/fa";
@@ -67,9 +63,6 @@ export default function ViewAppointments() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             {accountStatus.admin && <p>Admin: TRUE</p>}
             {!loading && !accountStatus.admin && <p>Viewing Appointments for {user.userID}</p>}
             {loading && (
@@ -90,7 +83,6 @@ export default function ViewAppointments() {
                     <FaTrash onClick={() => {DeleteAppointment(day._id)}}/>
                 </div>
             ))}
-            <Footer />
         </>
     )
 }
