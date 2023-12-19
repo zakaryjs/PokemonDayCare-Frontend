@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import BackgroundParticles from "../components/BackgroundParticles";
-import Footer from "../components/Footer";
-import HeaderImage from "../components/HeaderImage";
-import NavBar from "../components/NavBar";
 import { Button } from "react-bootstrap";
 import { useRefresh } from "../hooks/UseRefresh";
 import { useNavigate } from "react-router-dom";
@@ -59,9 +55,6 @@ export default function CreatePokemon() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             <form className="centred margin-top">
                 <div>
                     <label>Nickname</label>
@@ -114,7 +107,6 @@ export default function CreatePokemon() {
             {error?.errors?.gender && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.gender?.message}`}</p>}
             {error?.errors?.height && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.height?.message}`}</p>}
             {error?.errors?.weight && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.weight?.message}`}</p>}
-            <Footer />
         </>
     )
 }

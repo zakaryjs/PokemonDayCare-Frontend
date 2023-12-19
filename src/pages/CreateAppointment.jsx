@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import BackgroundParticles from "../components/BackgroundParticles";
-import Footer from "../components/Footer";
-import HeaderImage from "../components/HeaderImage";
-import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -121,9 +117,6 @@ export default function CreateAppointment() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             <form className="centred">
                 <div>
                     <label>Drop off Date</label>
@@ -169,7 +162,6 @@ export default function CreateAppointment() {
             {error?.errors?.gender && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.gender?.message}`}</p>}
             {error?.errors?.typeOfAppointment && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.typeOfAppointment?.message}`}</p>}
             {error?.errors?.pokemon && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.pokemon?.message}`}</p>}
-            <Footer />
         </>
     )
 }

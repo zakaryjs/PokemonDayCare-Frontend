@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import BackgroundParticles from '../components/BackgroundParticles';
-import NavBar from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import '../styles/Login.css'
 import { useNavigate } from 'react-router-dom';
 import LoadingGrid from '../components/spinners/Grid';
-import Footer from '../components/Footer';
-import HeaderImage from '../components/HeaderImage';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
 
 export default function Login() {
@@ -50,9 +46,6 @@ export default function Login() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             <h1 className='margin-top'>Login</h1>
             <form className='centred margin-top'>
                 <div>
@@ -77,7 +70,6 @@ export default function Login() {
             {loading && <LoadingGrid />}
             </div>
             {error && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error}`}</p>}
-            <Footer />
         </>
     )
 }

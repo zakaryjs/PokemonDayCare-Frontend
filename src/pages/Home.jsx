@@ -1,12 +1,8 @@
 import '../App.css'
-import NavBar from '../components/NavBar'
 import '../styles/Home.css'
 import Button from 'react-bootstrap/Button';
-import BackgroundParticles from '../components/BackgroundParticles';
 import { useRefresh } from '../hooks/UseRefresh';
 import { useEffect } from 'react';
-import Footer from '../components/Footer';
-import HeaderImage from '../components/HeaderImage';
 
 export default function Home() {
 
@@ -19,9 +15,6 @@ export default function Home() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             <div className='margin-top-extra jumbo-text'>
                 <span className='margin-top-extra'>The </span>
                 <span className='margin-top-extra green-text'>best daycare </span>
@@ -56,7 +49,6 @@ export default function Home() {
             <div className='image margin-top-extra'>
                 <img src={require('../images/143926_1.png')} alt='smiling Chansey' height={157} width={182} />
             </div>
-            <Footer />
         </>
     )
 }

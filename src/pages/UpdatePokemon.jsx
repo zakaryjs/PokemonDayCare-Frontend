@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import BackgroundParticles from "../components/BackgroundParticles";
-import HeaderImage from "../components/HeaderImage";
-import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
-import Footer from "../components/Footer";
 import { Button } from "react-bootstrap";
 import LoadingGrid from "../components/spinners/Grid";
 import { useGetPokemon } from "../hooks/useGetPokemon";
@@ -97,9 +93,6 @@ export default function UpdatePokemon() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             <form className="centred margin-top">
                 <div>
                     {pokemon[0] && 
@@ -148,7 +141,6 @@ export default function UpdatePokemon() {
             {error?.errors?.gender && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.gender?.message}`}</p>}
             {error?.errors?.height && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.height?.message}`}</p>}
             {error?.errors?.weight && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error?.errors?.weight?.message}`}</p>}
-            <Footer />
         </>
     )
 }

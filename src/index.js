@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -17,6 +16,10 @@ import CreateAppointment from './pages/CreateAppointment';
 import DateProvider from './contexts/DateProvider';
 import UpdatePokemon from './pages/UpdatePokemon';
 import UserProvider from './contexts/UserContext';
+import NavBar from './components/NavBar';
+import HeaderImage from './components/HeaderImage';
+import BackgroundParticles from './components/BackgroundParticles';
+import Footer from './components/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +27,9 @@ root.render(
   <DateProvider>
     <UserProvider>
       <BrowserRouter>
+          <HeaderImage />
+          <NavBar />
+          <BackgroundParticles />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
@@ -36,8 +42,8 @@ root.render(
             <Route path='/appointments' element={<ViewAppointments />} />
             <Route path='/createappointment' element={<CreateAppointment />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
-        <App />
     </UserProvider>
   </DateProvider>
   </>

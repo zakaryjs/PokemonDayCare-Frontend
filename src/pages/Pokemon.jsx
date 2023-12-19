@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import BackgroundParticles from "../components/BackgroundParticles";
-import HeaderImage from "../components/HeaderImage";
-import NavBar from "../components/NavBar";
 import { useRefresh } from "../hooks/UseRefresh";
 import LoadingCircles from "../components/spinners/Circles";
-import Footer from "../components/Footer";
 import '../styles/Card.css'
 import { FaTrash } from "react-icons/fa";
 import { useGetPokemon } from "../hooks/useGetPokemon";
@@ -52,9 +48,6 @@ export default function ViewPokemon() {
 
     return (
         <>
-            <BackgroundParticles />
-            <HeaderImage />
-            <NavBar />
             {accountStatus.admin && <p>Admin: TRUE</p>}
             {!loading && !accountStatus.admin && <p>Viewing Pokemon for {user.userID}</p>}
             {loading && (
@@ -74,7 +67,6 @@ export default function ViewPokemon() {
                         <img src={day.spriteUrl} height={125} width={125} alt='egg' />
                         </div>
                     ))}
-        <Footer />
         </>
     )
 }
