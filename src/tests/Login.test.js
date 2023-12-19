@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Login from '../pages/Login';
 import { BrowserRouter } from 'react-router-dom';
+import LoadingGrid from '../components/spinners/Grid';
 
 const MockLogin = () => {
     return (
@@ -20,7 +21,7 @@ test('about page renders description text', () => {
     expect(line3).toBeInTheDocument();
   });
 
-  test("can click on submit", () => {
+test("can click on submit", () => {
     render(<MockLogin />);
     const submitButton = screen.getByText("Submit");
   
@@ -34,3 +35,20 @@ test('about page renders description text', () => {
   
     expect(result).toBe(true)
   })
+
+test("Loading Spinner is rendered after button click", () => {
+  render(<MockLogin />);
+  const submitButton = screen.getByText("Submit");
+  const loadingGrid = <LoadingGrid />
+  
+    // eslint-disable-next-line no-unused-vars
+    let result = fireEvent(
+      submitButton,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true
+      })
+    )
+
+    expect(loadingGrid).toBeDefined()
+})
