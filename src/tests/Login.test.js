@@ -11,7 +11,7 @@ const MockLogin = () => {
     )
 }
 
-test('about page renders description text', () => {
+test('login page renders text', () => {
     render(<MockLogin />)
     const line1 = screen.getByText(/Login/i);
     const line2 = screen.getByText(/Email Address/i);
