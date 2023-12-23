@@ -14,6 +14,18 @@ Everyone knows the Pokemon daycare. Whether you were too lazy to farm exp, were 
 
 # General Documentation
 
+## Pre-Created Users:
+
+After seeding:
+
+Admin:
+email: adminuser@mail.com
+password: admin123
+
+User:
+email: jimmy@mail.com
+password: jimmy123
+
 ## Project Management
 
 ** All tasks were allocated to me, as I completed this project solo. Though I consider myself to be stronger in the frontend rather than the backend, it was a good learning experience and a good way to push myself outside of the comfort zone.
