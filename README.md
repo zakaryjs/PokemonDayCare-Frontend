@@ -1,4 +1,4 @@
-![Site Logo](./src/images/Zak-Logo-BG-removed.png)
+![Site Logo](./docs/Zak-Logo-BG-removed.png)
 
 Logo credit to my good friend, [Lochy.](https://www.linkedin.com/in/lochlyn-thomas-045b55289/)
 
@@ -16,7 +16,7 @@ Everyone knows the Pokemon daycare. Whether you were too lazy to farm exp, were 
 
 ## Pre-Created Users:
 
-After seeding:
+Seed the database using ```npm run seed```
 
 Admin:
 email: adminuser@mail.com
@@ -33,15 +33,23 @@ password: jimmy123
 Screenshots taken throughout the duration of Part B:
 
 December 10
+
+
 ![December 10](./docs/TRELLO-DEC10.png)
 
 December 14
+
+
 ![December 14](./docs/TRELLO-DEC14.png)
 
 December 21
+
+
 ![December 21](./docs/TRELLO-21DEC.png)
 
 December 23
+
+
 ![December 23](./docs/TRELLO-DEC23.png)
 
 As per my plan in Part A, I began the second part of the project by working through the backend. The process was as follows:
