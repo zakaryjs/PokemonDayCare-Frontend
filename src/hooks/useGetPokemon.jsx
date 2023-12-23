@@ -4,6 +4,8 @@ import { useRefresh } from "./UseRefresh";
 
 export function useGetPokemon() {
 
+    // fetch request to get all of users pokemon from the server
+
     let { id, user } = useRefresh()
     const [pokemon, setPokemon] = useState({})
     

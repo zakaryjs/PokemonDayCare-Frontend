@@ -1,3 +1,4 @@
+// particle config is for use with the BackgroundParticles component
 let particleConfig = {
     "fullScreen": {
         "enable": true,

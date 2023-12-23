@@ -15,11 +15,13 @@ export default function AccountPortal() {
     const welcome = getTime()
     const navigate = useNavigate()
 
+    // on load, run the refresh
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // if the user is logged in, continue. if they are not, redirect to the login page
     useEffect(() => {
         if (loggedIn) {
             return
@@ -31,8 +33,10 @@ export default function AccountPortal() {
 
         return (
         <>
+        {/* logged in? show the following */}
             {info?.firstName && (
                 <>
+                    {/* if admin, show admin: true */}
                     {accountStatus.admin && <p>Admin: TRUE</p>}
                     <p className='margin-top-extra'>Account ID: {user.userID}</p>
                     {info && <p>Good {welcome}, {info.firstName}!</p>}
@@ -53,12 +57,14 @@ export default function AccountPortal() {
                     </div>
                     <div className='text-center margin-top-button'>
                         {!loading && <Button onClick={() => {logout()}} className='margin-top-button centred' variant='success'>Logout</Button>}
+                        {/* while loading logout, show this spinner */}
                         <div className='container margin-top-extra'>
                             {loading && <LoadingGrid />}
                         </div>
                     </div>
             </>
             )}
+            {/* on initial load, show this spinner */}
             {!info?.firstName && (
                 <div className='container margin-top-extra'>
                     <LoadingCircles />

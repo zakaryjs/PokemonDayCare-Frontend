@@ -1,5 +1,8 @@
 import { Circles } from 'react-loader-spinner';
 
+// circle spinner component
+// used when loading account portal, pokemon and appointments
+
 export default function LoadingCircles() {
 
     return (

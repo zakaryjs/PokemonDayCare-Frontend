@@ -8,6 +8,7 @@ export default function Home() {
 
     const { refresh, loggedIn } = useRefresh();
 
+    // on load, run the refresh
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,6 +41,7 @@ export default function Home() {
             <div className='text-center margin-top-extra'>
                 <Button href="/about" variant='success'>About</Button>
             </div>
+            {/* if the user IS NOT logged in, show the login and register buttons */}
             <div className='text-center margin-top-button'>
                 {!loggedIn && <Button href="/register" variant='success'>Register</Button>}
             </div>

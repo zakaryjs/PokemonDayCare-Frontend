@@ -3,6 +3,8 @@ import { useRefresh } from "./UseRefresh"
 
 export function useGetAppointment() {
 
+    // fetch request to get all of users appointments from the server
+
     let { id, user } = useRefresh()
     const [appointments, setAppointment] = useState({})
 

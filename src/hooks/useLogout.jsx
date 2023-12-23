@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export function useLogout() {
 
+    // fetch request to logout the user
+
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 

@@ -16,6 +16,7 @@ export default function Login() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
 
+    // fetch request to login the user
     async function login(email, password) {
         setLoading(true)
 
@@ -69,6 +70,7 @@ export default function Login() {
             <div className='container margin-top-extra'>
             {loading && <LoadingGrid />}
             </div>
+            {/* if there is an error, show it */}
             {error && <p style={{color: 'red', marginTop: '15px'}}>{`Error: ${error}`}</p>}
         </>
     )

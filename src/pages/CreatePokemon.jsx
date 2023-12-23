@@ -20,12 +20,14 @@ export default function CreatePokemon() {
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
+    // on load, run the refresh and fetch the name of every pokemon
     useEffect(() => {
         refresh()
         getPokemon()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // fetch request to submit a created pokemon
     async function createPokemon(species, nickname, gender, height, weight, notes, id) {
         setLoading(true)
 

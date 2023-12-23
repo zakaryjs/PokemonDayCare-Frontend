@@ -1,4 +1,6 @@
 export function useDeletePokemon() {
+
+    // fetch request that deletes pokemon from the server
     
     async function DeletePokemon(id) {
         let result = await fetch(
@@ -13,6 +15,7 @@ export function useDeletePokemon() {
         )
 
         let data = await result.json()
+        // reload the page
         window.location.reload(false)
         return data
     }

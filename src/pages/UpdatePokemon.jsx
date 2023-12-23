@@ -22,11 +22,14 @@ export default function UpdatePokemon() {
     const [weight, setWeight] = useState("")
     const [notes, setNotes] = useState("")
 
+    // on load, run the refresh
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // if there is an id, run the get pokemon function
+    // result is different depending on admin status
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
             GetPokemon()
@@ -37,6 +40,7 @@ export default function UpdatePokemon() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
+    // on load, set the pokemon to modify as the first that is fetched
     useEffect(() => {
         if (pokemon[0]) {
             setFormattedPokemon(pokemon[0]._id)
@@ -50,10 +54,12 @@ export default function UpdatePokemon() {
         }
     }, [pokemon])
 
+    // when the value is changed, set the pokemon to that value
     function handlePokemonChange(event) {
         setPokemonToSubmit(event.target.value)
     }
 
+    // format the pokemon so that only ID is stored in state
     useEffect(() => {
         if (pokemonToSubmit[0]) {
             // eslint-disable-next-line no-unused-vars
@@ -65,6 +71,7 @@ export default function UpdatePokemon() {
 
     }, [pokemonToSubmit])
 
+    // fetch request to get individual pokemon data
     async function GetPokemonData(pokemon) {
         let result = await fetch(
             process.env.REACT_APP_POKEMON_FIND + pokemon,
@@ -85,6 +92,7 @@ export default function UpdatePokemon() {
         return data
     }
 
+    // if the pokemonToModify is set, get the data about that pokemon
     useEffect(() => {
         if (pokemonToModify != null) {
             GetPokemonData(pokemonToModify)

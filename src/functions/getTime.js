@@ -1,4 +1,5 @@
-
+//@desc function to get the users current time
+// used for account portal page
 
 let getTime = () => {
     let myDate = new Date()

@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 
+//@desc hook to fetch all pokemon on page load
+// save the fetched pokemon to state
+// return function and state
+
 export function usePokeApiFetch() {
     const [fetchedPokemon, setFetchedPokemon] = useState({})
 

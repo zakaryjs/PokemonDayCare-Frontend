@@ -1,6 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../contexts/UserContext';
 
+//@desc hook that is designed to get and set user data on page load
+
+
+// fetch request to token-refresh
+
 export function useRefresh() {
   const [accountStatus, setAccountStatus] = useState({});
   const {user, setUser} = useContext(UserContext)
@@ -25,8 +30,10 @@ export function useRefresh() {
       let data = await result.json()
       // console.log('validation', data)
 
+      // if theres an error - the user is not logged in
       if (data.error) {
         setLoggedIn(false)
+      // if the user is an admin - they are logged in, and have admin status
       } if (data.user.isAdmin) {
         // console.log('verified as admin')
         setAccountStatus({ admin: true })
@@ -34,11 +41,13 @@ export function useRefresh() {
         setLoggedIn(true)
         return
       } if (data.user) {
+        // if the user has data - they are logged in, but have no admin status
         // console.log('verified as regular user')
         setAccountStatus({ admin: false })
         setUser(data.user)
         setLoggedIn(true)
         return
+      // otherwise, they aren't logged in
       } else {
         setLoggedIn(false)
       }
@@ -46,6 +55,7 @@ export function useRefresh() {
     } catch (error) {}
   }
 
+  // after the refresh function is run, get the user info
   async function getUserInfo() {
     if (user && user.userID) {
         let userID = user?.userID     
@@ -73,6 +83,7 @@ export function useRefresh() {
 
   useEffect(() => {
 
+    // set the userID to the users ID
     if (user != null) {
         // console.log(user)
         setId(user.userID)

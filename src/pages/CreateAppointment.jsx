@@ -27,17 +27,21 @@ export default function CreateAppointment() {
 
     const navigate = useNavigate()
 
+    // on load, run the refresh
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // if there is a user logged in, set ID to the user ID
     useEffect(() => {
         if (user != null) {
             setId(user.userID)
         }
     }, [user])
 
+    // if there is an id, run the get pokemon function
+    // result is different depending on admin status
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
             GetPokemon()
@@ -48,20 +52,24 @@ export default function CreateAppointment() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
+    // if there is a pokemon, set the initial ID to that pokemon
     useEffect(() => {
         if (pokemon[0]) {
             setFormattedPokemon(pokemon[0]._id)
         }
     }, [pokemon])
 
+    // every time the form changes, set the submission pokemon to that value
     function handlePokemonChange(event) {
         setPokemonToSubmit(event.target.value)
     }
 
+    // every time the form changes, set the submission type of appointment to that value
     function handleAppointmentTypeChange(event) {
         setTypeOfAppointment(event.target.value)
     }
     
+    // if theres a pokemon to submit, set the formatted pokemon to that pokemons ID
     useEffect(() => {
         if (pokemonToSubmit[0]) {
             // eslint-disable-next-line no-unused-vars
@@ -72,6 +80,7 @@ export default function CreateAppointment() {
 
     }, [pokemonToSubmit])
 
+    // set the drop off date to a formatted version of the selected date
     useEffect(() => {
         if (dropOffDate != null) {
             let formattedDropOffDate = Date.parse(dropOffDate['$d'])
@@ -80,6 +89,7 @@ export default function CreateAppointment() {
         }
     }, [dropOffDate])
 
+    // set the pick up date to a formatted version of the selected date
     useEffect(() => {
         if (pickUpDate != null) {
             let formattedPickUpDate = Date.parse(pickUpDate['$d'])
@@ -88,6 +98,7 @@ export default function CreateAppointment() {
         }
     }, [pickUpDate])
 
+    // fetch request to submit the created appointment
     async function SubmitAppointment(dropOffDate, pickUpDate, typeOfAppointment, pokemon, user) {
         setLoading(true)
 

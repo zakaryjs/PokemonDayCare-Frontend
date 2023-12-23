@@ -13,11 +13,14 @@ export default function ViewAppointments() {
     const [updatedAppointments, setUpdatedAppointment] = useState({})
     const [loading, setLoading] = useState(true)
 
+    // on load, run the refresh
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // if there is an id, run the get appointment function
+    // result is different depending on admin status
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
             GetAppointment()
@@ -28,6 +31,8 @@ export default function ViewAppointments() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
+    // if there are appointments
+    // make a new object for each array, which includes all relevant data as well as a pokemon sprite based on the species name
     useEffect(() => {
         if (appointments.appointments) {
             const pokemonSprites = appointments?.appointments.map(appointment => {
@@ -43,6 +48,7 @@ export default function ViewAppointments() {
                     const [splitPickUpYear, splitPickUpMonth, splitPickUpDays] = splitPickUpDate.split("-")
                     return {...appointment, spriteUrl, splitDropOffYear, splitDropOffMonth, splitDropOffDays, splitPickUpYear, splitPickUpMonth, splitPickUpDays}
                 })
+                // if the pokemon has been deleted - the sprite is an unown (? variant)
                 } else {
                     const spriteUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png'
                     const dropOffDate = appointment.dropOffDate
@@ -54,6 +60,7 @@ export default function ViewAppointments() {
                     return {...appointment, spriteUrl, splitDropOffYear, splitDropOffMonth, splitDropOffDays, splitPickUpYear, splitPickUpMonth, splitPickUpDays}
                 }   
             })
+            // resolve every fetch request promise then display to the user
             Promise.all(pokemonSprites).then(updatedAppointmentList => {
                 setUpdatedAppointment(updatedAppointmentList)
                 setLoading(false)
@@ -79,7 +86,9 @@ export default function ViewAppointments() {
                     <h3>Pokemon: {day?.pokemon?.nickname}</h3>
                     <h3>Species: {day?.pokemon?.species}</h3>
                     <h3>Type of Appointment: {day.typeOfAppointment}</h3>
+                    {/* if admin, show email of the user that the appointment belongs to */}
                     {accountStatus.admin && <h3>{day.user.email}</h3>}
+                    {/* button to delete appointment */}
                     <FaTrash onClick={() => {DeleteAppointment(day._id)}}/>
                 </div>
             ))}

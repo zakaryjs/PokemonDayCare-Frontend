@@ -20,6 +20,7 @@ export default function Register() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
 
+    // fetch request to register a user
     async function register(firstName, lastName, email, password) {
         setLoading(true)
 
@@ -35,11 +36,13 @@ export default function Register() {
             }
         )
     
+        // if a user was successfully created, redirect them to the login screen
         let data = await result.json()
     
         if (data.user) {
             setLoading(false)
             navigate('/login')
+        // else, show the error to the user
         } if (data.error) {
             setLoading(false)
             setError(data.error)

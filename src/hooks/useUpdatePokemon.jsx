@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 export function useUpdatePokemon() {
 
+    // fetch request to update a users pokemon
+
     const navigate = useNavigate()
 
 

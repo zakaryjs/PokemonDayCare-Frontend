@@ -14,11 +14,14 @@ export default function ViewPokemon() {
     const [updatedPokemon, setUpdatedPokemon] = useState({})
     const [loading, setLoading] = useState(true)
 
+    // on load, run the refresh
     useEffect(() => {
         refresh()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // if there is an id, run the get pokemon function
+    // result is different depending on admin status
     useEffect(() => {
         if (id != null && user.isAdmin === true) {
             GetPokemon()
@@ -29,6 +32,8 @@ export default function ViewPokemon() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
+    // if there are pokemon
+    // make a new object for each array, which includes all relevant data as well as a pokemon sprite based on the species name
     useEffect(() => {
         if (pokemon[0]) {
             const pokemonSprites = pokemon.map(pokemon => {
