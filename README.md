@@ -6,6 +6,12 @@ Logo credit to my good friend, [Lochy.](https://www.linkedin.com/in/lochlyn-thom
 
 ### Back End: https://api.pokemondaycare.tech/
 
+### Front End Repository: https://github.com/zakaryjs/PokemonDayCare-Frontend
+
+### Back End Repository: https://github.com/zakaryjs/PokemonDayCare-Server
+
+Everyone knows the Pokemon daycare. Whether you were too lazy to farm exp, were trying to breed that perfect competitive mon, or just wanted to hatch a shiny - the daycare has always been there to help make that possible.
+
 ## Libraries Used
 
 ### React
@@ -37,3 +43,72 @@ Jest is a JavaScript testing framework that can be used for testing different pa
 
 ### React Testing Library
 React Testing Library is a package that is used to test React components. It works in conjunction with Jest in order to provide a way to test a React App. In this app, it is used to test a variety of components.
+
+## Project Management
+
+** All tasks were allocated to me, as I completed this project solo. Though I consider myself to be stronger in the frontend rather than the backend, it was a good learning experience and a good way to push myself outside of the comfort zone.
+
+Screenshots taken throughout the duration of Part B:
+
+December 10
+![December 10](./docs/TRELLO-DEC10.png)
+
+December 14
+![December 14](./docs/TRELLO-DEC14.png)
+
+December 21
+![December 21](./docs/TRELLO-21DEC.png)
+
+As per my plan in Part A, I began the second part of the project by working through the backend. The process was as follows:
+
+- Create models
+
+- Create basic functions
+
+- Create routes with said functions
+
+- Manually test these routes, with multiple different scenarios in order to fully test functionality and try and find edge cases
+
+- If any bugs are found, pause development and work to fix them
+
+- Deploy the server
+
+I then began work on the front end:
+
+- Create basic pages
+
+- Create account portal
+
+- Create functionality relating to account portal
+
+- Make fetch requests to the server
+
+At this point in the project, I had to figure out how to store and use the JWT. 
+
+This was one of the major hurdles I had in the project, as I really struggled to figure out how to create and store cookies properly. After a few days of testing, they finally worked, however:
+
+I read that 3rd party cookies where soon to be blocked by browsers, and, after testing on mobile devices I figured out that Safari blocks third party cookies anyway. 
+
+The solution? A custom domain. The next few days were spent configuring Netlify, Heroku and domain DNS' in order to get this to work. I am really proud of this. 
+
+The remainder of the project was spent:
+
+- Finalising functionality (more pages, redirects, custom hooks)
+
+- Adding styling
+
+- Writing tests for both the front and back end. 
+
+- Writing documentation
+
+#### Front End Branches
+
+![Front End Branches](./docs/frontend-branches.png)
+
+For the branches, I separated each major feature into its own branch. These were designed to be similar to the tasks that I had outlined in the Trello. The ```update-search``` branch was definitely the biggest - it was used to update page search functionality, as well as make many other small changes.
+
+Smaller page specific branches were also deleted throughout the duration of the project.
+
+![Back End Branches](./docs/backend-branches.png)
+
+For the branches, I again separated each major feature into its own branch. These were again designed to be similar to the tasks that I had outlined in the Trello. These were more separated than the front end branches, as overall less time was spent on the backend. 
